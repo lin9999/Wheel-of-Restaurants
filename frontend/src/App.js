@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import NormalLoginForm from './components/NormalLoginForm'
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
