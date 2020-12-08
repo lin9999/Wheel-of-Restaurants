@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const AccountSchema = Schema({
 		UID: { type: Number, required: true, unique: true },
-		account: { type: String, required: true },
+		userName: { type: String, required: true, unique: true },
 		password: { type: String, required: true }
 	}, {
 		collection: 'Account',
