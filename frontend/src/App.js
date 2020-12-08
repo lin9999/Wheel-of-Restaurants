@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import NormalLoginForm from './components/NormalLoginForm'
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
@@ -24,15 +25,27 @@ function App() {
         await instance.delete('/danger/clearAll')
     }
     return (
-        <div className="App">
-            <header className="App-header">
-                <input id="input_userName" type="text" onChange={(e) => {setUserName(e.target.value)}}></input>
-                <input id="input_password" type="text" onChange={(e) => {setPassword(e.target.value)}}></input>
-                <button id="b_login" onClick={login}>Login</button>
-                <button id="b_signup" onClick={signUp}>Sign Up</button>
-                <button id="b_clear" onClick={clearAll}>Clear All</button>
-            </header>
-        </div>
+      	<body>
+    	  	<div className="TitleBlock">
+    	  		<div className="TextBlock">
+    				<h1 className="titleCap" id="W">W</h1>
+    		  		<h1 className="titleLow" id="here">here's</h1>
+    		  	</div>
+    	  		<div className="TextBlock">
+    				<h1 className="titleCap" id="T">T</h1>
+    		  		<h1 className="titleLow" id="o">he</h1>
+    		  	</div>
+    	  		<div className="TextBlock">
+    				<h1 className="titleCap" id="F">F</h1>
+    		  		<h1 className="titleLow" id="east">ood</h1>
+    		  	</div>		  		  	
+    		</div>
+    		<div className="Form">
+    			<NormalLoginForm></NormalLoginForm>
+    		</div>
+    		<div className="LeftBlock"></div>
+    		<div className="FooterBlock"></div>
+    	</body>
     );
 }
 

@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
+div#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* full window width */
+    height: 100%;
+    /* full window height */
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+div.TitleBlock {
+    position: relative;
+    width: 30%;
+    height: 45%;
+    background-color: #00b8ffdb;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+div.TextBlock {
+    width: 100%;
+    height: 33.3%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1.titleCap {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 675%;
+    font-weight: 700;
+    line-height: 80%;
+
+    float: left;
+
+    padding: 18px;
+
+    color: #f2f2f2;
+    background-color: #ff4a4a;
+    height: 100%;
+    width: 33.3%;
+
+    position: relative;
+
+    top:;
 }
 
-.App-link {
-  color: #61dafb;
+h1#F {
+    left: -66.6%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1.titleLow {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 675%;
+    font-weight: 700;
+    line-height: 80%;
+
+    position: relative;
+}
+
+h1#here {
+    top: 17%;
+    left: -3%;
+}
+
+h1#o {
+    top: 17%;
+    left: -2%;
+}
+
+h1#east {
+    top: -120%;
+    left: 2%;
+}
+
+div.Form {
+    background-color: #50f5d7cc;
+    height: 90%;
+    width: 70%;
+    position: relative;
+    top: -45%;
+    left: 30%;
+}
+
+div.LeftBlock {
+    position: relative;
+    width: 30%;
+    height: 45%;
+    background-color: #ff9900bf;
+    top: -90%;
+    left: 0%;
+}
+
+div.FooterBlock {
+    background-color: #4646469c;
+    height: 10%;
+    width: 100%;
+    position: relative;
+    top: -90%;
+}
+
+#normal_login {
+	padding: 20% 0;
+	margin: auto;
 }
