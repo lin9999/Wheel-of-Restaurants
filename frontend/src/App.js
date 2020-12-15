@@ -1,21 +1,21 @@
 import './App.css';
 import NormalLoginForm from './components/NormalLoginForm'
+import {PieChartOutlined} from '@ant-design/icons'
 import React from 'react'
-import logo from './imgs/logo.png'
+import background from './imgs/background.png'
 
 function App() {
     return (
         <React.Fragment>
-            <div className="TitleBlock">
-                <img className="logo" src={logo} alt="Logo"/>              
-            </div>
-            <div className="Form">
+            <img className="background" src={background} alt="Background"/>  
+            <div>
                 <NormalLoginForm></NormalLoginForm>
-            </div>
-            <div className="LeftBlock"></div>
-            <div className="FooterBlock"></div>
+            </div>        
+
+
         </React.Fragment>
     );
 }
 
 export default App;
+//<PieChartOutlined style={{ width: '100px'}}/> 
