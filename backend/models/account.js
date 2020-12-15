@@ -5,7 +5,9 @@ const Schema = mongoose.Schema
 const AccountSchema = Schema({
 		UID: { type: Number, required: true, unique: true },
 		userName: { type: String, required: true, unique: true },
-		password: { type: String, required: true }
+		password: { type: String, required: true },
+		blacklist: [{ type: Number }],
+		favorite: [{ type: Number }]
 	}, {
 		collection: 'Account',
 		timestamps: { createdAt: 'created_at'}

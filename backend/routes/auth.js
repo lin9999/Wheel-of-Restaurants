@@ -9,14 +9,14 @@ async function Authenticate(req, res) {
 							if (!account)
 								throw new Error("No such user!")
 							if (req.body.password === account.password) {
-								console.log("Login")
+								console.log("[Login]: User " + account.userName + " is logged in")
 								res.status(200).send({ message: "Login" })
 							} else {
-								console.log("Wrong")
+								console.log("[Error]: Wrong password")
 								res.status(200).send({ message: "Wrong password!"})
 							}
-						} catch (error) {
-							console.log(error)
+						} catch (e) {
+							console.log("[Error]: " + e.message)
 							res.status(200).send({ message: "No such user!"})
 						}
 					})
@@ -28,17 +28,19 @@ async function SignUp(req, res) {
 					.sort('-UID')
 					.exec(function(err, userWithMaxID) {
 						const newAccount = req.body
-						if (userWithMaxID === null) {
+						if (!userWithMaxID) {
 							req.body.UID = 0
 						} else {
 							req.body.UID = userWithMaxID.UID + 1
 						}
+
 						Account.create(newAccount, function(err, account, next) {
 							if (err) {
 								if (err.name === 'MongoError' && err.code === 11000)
+									console.log("[Error]: User name existed!")
 									res.status(200).send({ message: "User name existed" })
 							} else {
-								console.log("create User: " + JSON.stringify(newAccount))
+								console.log("[Create]: " + JSON.stringify(newAccount))
 								res.status(200).send({ message: "User account has been created" })						
 							}
 						})
