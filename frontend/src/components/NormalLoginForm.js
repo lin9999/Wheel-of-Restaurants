@@ -1,12 +1,34 @@
+import './NormalLoginForm.css'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import './NormalLoginForm.css'
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
+import axios from 'axios'
 
-const NormalLoginForm = () => {
-  const onFinish = (values) => {
-	console.log('Received values of form: ', values);
-  };
+const API_ROOT = 'http://localhost:4000/api'
+const instance = axios.create({
+    baseURL: API_ROOT
+})
+
+function NormalLoginForm() {
+	const [userName, setUserName] = useState("")
+    const [password, setPassword] = useState("")
+    const login = async () => {
+        const ret = await instance.post('/auth', { userName: userName, password: password })
+        console.log(ret.data.message)
+    }
+
+    const signUp = async () => {
+        const ret = await instance.post('/signup', { userName: userName, password: password })
+        console.log(ret.data.message)
+    }
+
+    const clearAll = async () => {
+        await instance.delete('/danger/clearAll')
+    }
+
+	const onFinish = (values) => {
+		console.log('Received values of form: ', values);
+	}
 
 	return(
 		<Form
@@ -26,7 +48,9 @@ const NormalLoginForm = () => {
 					},
 				]}
 			>
-				<Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+				<Input prefix={<UserOutlined className="site-form-item-icon" />} 
+					   placeholder="Username" 
+					   onChange={(e) => {setUserName(e.target.value)}}/>
 			</Form.Item>
 			<Form.Item
 				name="password"
@@ -41,6 +65,7 @@ const NormalLoginForm = () => {
 					prefix={<LockOutlined className="site-form-item-icon" />}
 					type="password"
 					placeholder="Password"
+					onChange={(e) => {setPassword(e.target.value)}}
 				/>
 			</Form.Item>
 			<Form.Item>
@@ -54,7 +79,7 @@ const NormalLoginForm = () => {
 			</Form.Item>
 
 			<Form.Item>
-				<Button type="primary" htmlType="submit" className="login-form-button">
+				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
 					Log in
 				</Button>
 				Or <a href="">register now!</a>

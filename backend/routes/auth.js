@@ -1,15 +1,23 @@
 import Account from "../models/account.js"
 
 async function Authenticate(req, res) {
+	console.log(req.body)
 	const query = Account
 					.findOne({ userName: req.body.userName })
 					.exec(function(err, account) {
-						console.log(account.password)
-						console.log(req.body.password)
-						if (req.body.password === account.password) {
-							res.status(200).send({ message: "Login" })
-						} else {
-							res.status(200).send({ message: "Wrong password!"})
+						try {
+							if (!account)
+								throw new Error("No such user!")
+							if (req.body.password === account.password) {
+								console.log("Login")
+								res.status(200).send({ message: "Login" })
+							} else {
+								console.log("Wrong")
+								res.status(200).send({ message: "Wrong password!"})
+							}
+						} catch (error) {
+							console.log(error)
+							res.status(200).send({ message: "No such user!"})
 						}
 					})
 }
