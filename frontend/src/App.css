@@ -23,14 +23,19 @@ div#root {
 
 h3.footer {
     position: relative;
-    top: 10.5%;
+    top: 17%;
 }
 
 h3.gitIcon {
-    display:inline-block;
     position: relative;
     left: 30%;
-    top: 3%;
+    top: 10%;
+}
+
+.wheel {
+    width: 40%;
+    position: relative;
+    top: 70px;
 }
 
 /*div.Form {
@@ -81,7 +86,6 @@ h1.titleCap {
 
     position: relative;
 
-    top:;
 }
 
 h1#F {
@@ -103,7 +107,7 @@ h1#here {
 }
 
 h1#o {
-    top: 17%;
+    top: 20%;
     left: -2%;
 }
 
