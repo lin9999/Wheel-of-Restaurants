@@ -1,8 +1,10 @@
-import './NormalLoginForm.css'
+import './NormalLoginForm.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import React, { useState } from 'react'
-import axios from 'axios'
+
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
@@ -10,11 +12,15 @@ const instance = axios.create({
 })
 
 function NormalLoginForm() {
+	const history = useHistory()
 	const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const login = async () => {
         const ret = await instance.post('/auth', { userName: userName, password: password })
-        console.log(ret.data.message)
+        document.cookie = "RND=" + ret.data.RND
+        if (ret.data.message === "Login") {
+        	history.push('/WTF')
+        }
     }
 
     const signUp = async () => {
@@ -27,7 +33,7 @@ function NormalLoginForm() {
     }
 
 	const onFinish = (values) => {
-		console.log('Received values of form: ', values);
+		console.log('Received values of form: ', values)
 	}
 
 	return(
@@ -76,7 +82,10 @@ function NormalLoginForm() {
 				<Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
 					Register now!
 				</Button>
-				<a href="">Forgot password</a>				
+				<a href="">Forgot password</a>		
+				<Button type="danger" onClick={clearAll}>
+				CLEAR
+				</Button>
 			</Form.Item>
 		</Form>
 	);

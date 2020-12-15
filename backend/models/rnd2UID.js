@@ -3,8 +3,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const Rnd2UID = Schema({
-		RND: { type: Number, required: true, unique: true }
-		UID: { type: Number, required: true},
+		RND: { type: String, required: true, unique: true },
+		UID: { type: Number, required: true}
 	}, {
 		collection: 'Rnd2UID mapping',
 		timestamps: { createdAt: 'created_at'}

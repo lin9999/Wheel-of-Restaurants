@@ -6,8 +6,8 @@ const AccountSchema = Schema({
 		UID: { type: Number, required: true, unique: true },
 		userName: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
-		blacklist: [{ type: Number }],
-		favorite: [{ type: Number }]
+		blacklist: [{ type: String }],
+		favorite: [{ type: String }]
 	}, {
 		collection: 'Account',
 		timestamps: { createdAt: 'created_at'}
