@@ -72,8 +72,8 @@ function NormalLoginForm() {
 				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
 					Log in
 				</Button>
-				<p style={{"font-size":"20px"}}> or </p>
-				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
+				<p style={{ "font-size":"20px", "margin-bottom":"0em" }}> or </p>
+				<Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
 					Register now!
 				</Button>
 				<a href="">Forgot password</a>				
