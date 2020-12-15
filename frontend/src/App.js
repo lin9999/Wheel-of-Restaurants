@@ -1,9 +1,9 @@
 import './App.css';
 import NormalLoginForm from './components/NormalLoginForm'
-import {PieChartOutlined, HeartOutlined, CopyrightOutlined, GithubOutlined} from '@ant-design/icons'
+import WTF from './components/WTF'
+import {PieChartOutlined, HeartFilled, CopyrightOutlined, GithubOutlined} from '@ant-design/icons'
 import React, { useState } from 'react'
 import background from './imgs/background.png'
-import wheel from './imgs/wheel.jpeg'
 
 function App() {
 
@@ -18,11 +18,11 @@ function App() {
 				</div>
 			):(
 				<div>
-					
+					<WTF></WTF>
 				</div>
 			)}
 			<h3 className="footer"> 
-				<PieChartOutlined/> <br/> <CopyrightOutlined /> 2020 by WTF <br/> Proudly created with <HeartOutlined />
+				<PieChartOutlined/> <br/> <CopyrightOutlined /> 2020 by WTF <br/> Proudly created with <HeartFilled />
 			</h3>
 			<h3 className="gitIcon">
 				Follow us: &nbsp;<GithubOutlined /> <GithubOutlined /> <GithubOutlined />
