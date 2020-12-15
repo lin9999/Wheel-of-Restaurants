@@ -69,20 +69,14 @@ function NormalLoginForm() {
 				/>
 			</Form.Item>
 			<Form.Item>
-				<Form.Item name="remember" valuePropName="checked" noStyle>
-					<Checkbox>Remember me</Checkbox>
-				</Form.Item>
-
-				<a className="login-form-forgot" href="">
-					Forgot password
-				</a>
-			</Form.Item>
-
-			<Form.Item>
 				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
 					Log in
 				</Button>
-				Or <a href="">register now!</a>
+				<p style={{"font-size":"20px"}}> or </p>
+				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
+					Register now!
+				</Button>
+				<a href="">Forgot password</a>				
 			</Form.Item>
 		</Form>
 	);
