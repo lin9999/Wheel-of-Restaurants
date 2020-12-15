@@ -22,15 +22,15 @@ div#root {
 }
 
 h3.footer {
-    position: relative;
-    top: 10.5%;
+    position: fixed;
+    top: 90%;
+    left: 45%;
 }
 
 h3.gitIcon {
-    display:inline-block;
-    position: relative;
-    left: 30%;
-    top: 3%;
+    position: fixed;
+    left: 75%;
+    top: 93%;
 }
 
 /*div.Form {
