@@ -5,5 +5,8 @@
   "scripts": {
     "start": "cd frontend && yarn start",
     "server": "cd backend && yarn server"
+  },
+  "dependencies": {
+    "cookie": "^0.4.1"
   }
 }

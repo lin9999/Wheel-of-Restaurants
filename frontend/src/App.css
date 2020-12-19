@@ -71,7 +71,7 @@ div.TextBlock {
 
 h1.titleCap {
     font-family: 'Libre Baskerville', serif;
-    font-size: 675%;
+    fontSize: 675%;
     font-weight: 700;
     line-height: 80%;
 
@@ -94,7 +94,7 @@ h1#F {
 
 h1.titleLow {
     font-family: 'Libre Baskerville', serif;
-    font-size: 675%;
+    fontSize: 675%;
     font-weight: 700;
     line-height: 80%;
 
