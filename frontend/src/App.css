@@ -22,14 +22,15 @@ div#root {
 }
 
 h3.footer {
-    position: relative;
-    top: 17%;
+    position: fixed;
+    top: 90%;
+    left: 45%;
 }
 
 h3.gitIcon {
     position: relative;
     left: 30%;
-    top: 10%;
+    top: 12%;
 }
 
 .wheel {
