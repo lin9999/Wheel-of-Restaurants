@@ -9,6 +9,9 @@ import { parse as cookieParser} from 'cookie'
 
 import User from '../classes/User.js'
 
+import Wheel from "./Wheel"
+
+
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
@@ -44,7 +47,8 @@ function WTF() {
 		<React.Fragment>
 			<h1>Hi, {(!user) ? "" : user.userName}</h1>
 			<Button type="primary" onClick={logout}>LOGOUT</Button>
-			<img className="wheel" src={wheel} alt="Wheel"/>
+			<Wheel items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
+
 		</React.Fragment>
 	);
 };

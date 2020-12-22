@@ -4,8 +4,8 @@ import mongoose from 'mongoose'
 import routes from './routes/index.js'
 
 // To make sure require() can work
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url);
+// import { createRequire } from 'module'
+// const require = createRequire(import.meta.url);
 require('dotenv').config()
 
 const app = express()
