@@ -6,13 +6,14 @@ div#root {
     height: 100%;
     /* full window height */
     text-align: center;
-}
+/*    background-color: #4646469c;
+*/}
 
 .background {
     width: 100%;
     position: fixed;
     left: 0%;
-    z-index: -1;
+    z-index: 0;
 }
 
 #normal_login {

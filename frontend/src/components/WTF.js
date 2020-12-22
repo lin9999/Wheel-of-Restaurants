@@ -1,24 +1,20 @@
+import './WTF.css';
 import './NormalLoginForm.css'
-import { Button } from 'antd'
-import { } from '@ant-design/icons'
+import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import wheel from '../imgs/wheel.png'
 import { useLocation, useHistory } from 'react-router-dom';
 import { parse as cookieParser} from 'cookie'
 
 import User from '../classes/User.js'
-
 import Wheel from "./Wheel"
-
+import WBList from './WBList'
 
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
     baseURL: API_ROOT
 })
-
-
 
 function WTF() {
 	const history = useHistory()
@@ -43,12 +39,17 @@ function WTF() {
 	    	})
 	    }
 	}, [])
+
 	return(
 		<React.Fragment>
 			<h1>Hi, {(!user) ? "" : user.userName}</h1>
 			<Button type="primary" onClick={logout}>LOGOUT</Button>
 			<Wheel items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
-
+			<div>
+				<h3>Choices:</h3>
+				<InputNumber min={1} max={10} defaultValue={3} />
+			</div>
+			<WBList classname="WBList"/>
 		</React.Fragment>
 	);
 };
