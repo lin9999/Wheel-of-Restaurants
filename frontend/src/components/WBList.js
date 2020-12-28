@@ -8,10 +8,11 @@ function WBList(){
 		<React.Fragment>
 			<Tabs tabBarStyle={{ 
 								'width': '30%', 
-								'position': 'relative', 
-								'top':'15%'}} 
-					centered="true" type="card"
-					className="Tabs" defaultActiveKey="1">
+								'position': 'absolute', 
+								'top':'24.8vw'}} 
+					type="card"
+					className="Tabs" defaultActiveKey="1"
+					style={{"width": "432px"}}>
 		    	<TabPane className="TabPane" tab="All" key="1">
 		      		Content of Tab Pane 1
 		    	</TabPane>

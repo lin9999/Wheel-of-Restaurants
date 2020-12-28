@@ -1,4 +1,22 @@
-.WBList{
-	position:  relative;
-	top:  50%;
+.Choices {
+	display:  block;
+	position: relative;
+	top: 1vw;
+}
+
+#rectangle{
+    width:27vw;
+    height:30vw;
+    background:blue;
+   	display:  block;
+	position: relative;
+	top: -35vw;
+	left: 70vw;
+}
+
+.LOGOUT{
+	display: block;
+	position: relative;
+	top: 2vw;
+	left:46.9vw;
 }

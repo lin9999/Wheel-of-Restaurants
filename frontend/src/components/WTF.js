@@ -42,14 +42,15 @@ function WTF() {
 
 	return(
 		<React.Fragment>
-			<h1>Hi, {(!user) ? "" : user.userName}</h1>
-			<Button type="primary" onClick={logout}>LOGOUT</Button>
+			<h1>Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let me decide for you!</h1>
 			<Wheel items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
-			<div>
+			<div className="Choices">
 				<h3>Choices:</h3>
 				<InputNumber min={1} max={10} defaultValue={3} />
 			</div>
+			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList"/>
+			<div id="rectangle"></div>
 		</React.Fragment>
 	);
 };
