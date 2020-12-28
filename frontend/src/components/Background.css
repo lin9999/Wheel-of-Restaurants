@@ -1,79 +1,99 @@
 
-div.Form {
+div.FormBlock {
     background-color: #50f5d7cc;
-    height: 90%;
-    width: 70%;
-    position: relative;
-    top: -45%;
-    left: 30%;
+    height: 720px;
+    width: 1010px;
+    position: absolute;
+    left: 432px;
+    z-index: -1;
+}
+
+div.TitleBlock {
+    display: block;
+    position: absolute;
+    width: 433px;
+    height: 360px;
+    background-color: #00b8ffdb;
+    z-index: -1;
 }
 
 div.LeftBlock {
-/*    display: inline-block;
-*/    position: relative;
-    width: 30%;
-    height: 45%;
+    display: block;
+    position: absolute;
+    width: 433px;
+    height: 360px;
     background-color: #ff9900bf;
-    top: -90%;
-    left: 0%;
+    top: 360px;
+    z-index: -1;
 }
 
 div.FooterBlock {
+    display: block;
+    position: absolute;
     background-color: #4646469c;
-    height: 10%;
-    width: 100%;
-    position: relative;
-    top: -90%;
+    height: 75px;
+    width: 1442px;
+    top: 720px;
+    z-index: -1;
 }
 
-div.TextBlock {
-    width: 100%;
-    height: 33.3%;
-}
-
-h1.titleCap {
-    font-family: 'Libre Baskerville', serif;
-    fontSize: 675%;
-    font-weight: 700;
-    line-height: 80%;
-
-    float: left;
-
-    padding: 18px;
-
-    color: #f2f2f2;
+div.SmallSquare {
     background-color: #ff4a4a;
-    height: 100%;
-    width: 33.3%;
-
-    position: relative;
-
+    width: 144px;
+    height: 120px;
+    border-style: solid;
+    border-color: #FFFFFF;
 }
 
-h1#F {
-    left: -66.6%;
+div.BigSquare {
+    background-color: #994aff82;
+    width: 288px;
+    height: 240px;
+    border-style: solid;
+    border-color: #FFFFFF;
+    position: absolute;
+    left: 144px;
+    top: 0px;
 }
 
-h1.titleLow {
+h1.BigTitle {
     font-family: 'Libre Baskerville', serif;
-    fontSize: 675%;
-    font-weight: 700;
-    line-height: 80%;
+    font-size: 100px;
+    font-weight: 900;
+    position: absolute;
+    top:42px;
+    left:2px;
+}
 
+h1.SmallTitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 75px;
+    font-weight: 900;
+}
+
+div#W {
+    background-color: #00b8ffdb;
+}
+
+div#F {
+    background-color: #00b8ffdb;
+}
+
+div#oo {
+    position: absolute;
+    top:240px;
+    left: 144px;
+}
+
+img.cookie {
     position: relative;
+    width: 55px;
+    top: 35px;
 }
 
-h1#here {
-    top: 17%;
-    left: -3%;
-}
-
-h1#o {
-    top: 20%;
-    left: -2%;
-}
-
-h1#east {
-    top: -120%;
-    left: 2%;
+div#d {
+    background-color: #00b8ffdb;
+    position: absolute;
+    top:240px;
+    left: 288px;
 }

@@ -9,13 +9,6 @@ div#root {
 /*    background-color: #4646469c;
 */}
 
-.background {
-    width: 100%;
-    position: fixed;
-    left: 0%;
-    z-index: -1;
-}
-
 #normal_login {
 	padding: 13% 0;
 	margin: auto;
@@ -25,14 +18,14 @@ div#root {
 h3.footer {
     display: block;
     position: fixed;
-    top: 49.5vw;
-    left: 45vw;
+    top: 716px;
+    left: 630px;
 }
 
 h3.gitIcon {
     display: block;
     position: fixed;
-    width: 10vw;
-    left: 80vw;
-    top: 51vw;
+    width: 500px;
+    left: 1000px;
+    top: 730px;
 }

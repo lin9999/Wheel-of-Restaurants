@@ -9,7 +9,7 @@ function WBList(){
 			<Tabs tabBarStyle={{ 
 								'width': '30%', 
 								'position': 'absolute', 
-								'top':'24.8vw'}} 
+								'top':'360px'}} 
 					type="card"
 					className="Tabs" defaultActiveKey="1"
 					style={{"width": "432px"}}>
