@@ -43,8 +43,10 @@ function WTF() {
     return (
         <React.Fragment>
 			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
-			<Wheel className="Wheel" items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
-			<div className="Choices">
+			<div className="Wheel">
+                <Wheel  items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
+			</div>
+            <div className="Choices">
 				<h3>Choices:</h3>
 				<InputNumber min={1} max={10} defaultValue={3} />
 			</div>

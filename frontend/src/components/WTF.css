@@ -30,6 +30,12 @@
     display: block;
 }
 
+div.Wheel {
+    position: relative;
+    width: 300px;
+    left: 510px;
+}
+
 h1#Title
 {
     position: relative;
