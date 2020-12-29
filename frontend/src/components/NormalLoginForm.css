@@ -20,3 +20,9 @@
 {
     width: 400px;
 }
+
+.formwrapper{
+	position: absolute;
+	top:150px;
+	left: 650px;
+}

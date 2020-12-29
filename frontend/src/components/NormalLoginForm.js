@@ -64,61 +64,63 @@ function NormalLoginForm() {
 	}
 
 	return(
-		<Form
-			name="normal_login"
-			className="login-form"
-			initialValues={{
-				remember: true,
-			}}
-			onFinish={onFinish}
-			onFinishFailed={()=>{ alert("Username and Password should not be empty!") }}
-		>
-			<Form.Item
-				name="username"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your Username!',
-					},
-				]}
+		<div className="formwrapper">
+			<Form
+				name="normal_login"
+				className="login-form"
+				initialValues={{
+					remember: true,
+				}}
+				onFinish={onFinish}
+				onFinishFailed={()=>{ alert("Username and Password should not be empty!") }}
 			>
-				<Input prefix={<UserOutlined className="site-form-item-icon" />} 
-					   placeholder="Username" 
-					   onChange={(e) => {setUserName(e.target.value)}}/>
-			</Form.Item>
-			<Form.Item
-				name="password"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your Password!',
-					},
-				]}
-			>
-				<Input
-					prefix={<LockOutlined className="site-form-item-icon" />}
-					type="password"
-					placeholder="Password"
-					onChange={(e) => {setPassword(e.target.value)}}
-				/>
-			</Form.Item>
-			<Form.Item>
-				<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
-					Log in
-				</Button>
-				<p style={{ "fontSize":"20px", "marginBottom":"0em" }}> or </p>
-				<Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
-					Register now!
-				</Button>
-				<a href="TODO">Forgot password</a>		
-				<Button type="danger" onClick={clearAll}>
-				CLEAR
-				</Button>
-				<Button type="danger" onClick={printCookie}>
-				COOKIE
-				</Button>
-			</Form.Item>
-		</Form>
+				<Form.Item
+					name="username"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your Username!',
+						},
+					]}
+				>
+					<Input prefix={<UserOutlined className="site-form-item-icon" />} 
+						   placeholder="Username" 
+						   onChange={(e) => {setUserName(e.target.value)}}/>
+				</Form.Item>
+				<Form.Item
+					name="password"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your Password!',
+						},
+					]}
+				>
+					<Input
+						prefix={<LockOutlined className="site-form-item-icon" />}
+						type="password"
+						placeholder="Password"
+						onChange={(e) => {setPassword(e.target.value)}}
+					/>
+				</Form.Item>
+				<Form.Item>
+					<Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
+						Log in
+					</Button>
+					<p style={{ "fontSize":"20px", "marginBottom":"0em" }}> or </p>
+					<Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
+						Register now!
+					</Button>
+					<a href="TODO">Forgot password</a>		
+					<Button type="danger" onClick={clearAll}>
+					CLEAR
+					</Button>
+					<Button type="danger" onClick={printCookie}>
+					COOKIE
+					</Button>
+				</Form.Item>
+			</Form>
+		</div>
 	);
 };
 
