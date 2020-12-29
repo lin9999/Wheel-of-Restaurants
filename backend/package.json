@@ -2,7 +2,6 @@
   "name": "wheel-or-restaurants-frontend",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@babel/cli": "^7.12.8",
     "@babel/core": "^7.12.9",
