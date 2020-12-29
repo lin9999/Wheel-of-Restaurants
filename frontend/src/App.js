@@ -1,14 +1,14 @@
 import './App.css';
 import NormalLoginForm from './components/NormalLoginForm'
 import WTF from './components/WTF'
-import {PieChartOutlined, HeartFilled, CopyrightOutlined, GithubOutlined} from '@ant-design/icons'
+import { PieChartOutlined, HeartFilled, CopyrightOutlined, GithubOutlined } from '@ant-design/icons'
 import Background from './components/Background'
 import React from 'react'
 import { BrowserRouter, Route } from "react-router-dom"
 
 function App() {
-	return (
-		<React.Fragment>
+    return (
+        <React.Fragment>
 			<Background/>
             <BrowserRouter>
 				<Route exact path="/" component={NormalLoginForm} />
@@ -21,7 +21,7 @@ function App() {
 				Follow us: &nbsp;<GithubOutlined /> <GithubOutlined /> <GithubOutlined />
 			</h3>
 		</React.Fragment>
-	);
+    );
 }
 
 export default App;

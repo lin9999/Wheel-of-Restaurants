@@ -1,19 +1,25 @@
-.SearchBar {
-	position: relative;
-	top: -100px;
-	lefy:30%;
+.SearchBar
+{
+    position: relative;
+    top: -100px;
+    left: 30%;
 }
 
-.Tabs {
-	display: block;
-	position: absolute; 
-	width: 434px;
-	height: 400px; 
-	top: 360px;
+.Tabs
+{
+    position: absolute;
+    top: 360px;
+
+    display: block;
+
+    width: 434px;
+    height: 400px;
 }
 
-.ant-tabs-content-holder{
-	position:  absolute;
-	top: 40px;
-	width:434px;
+.ant-tabs-content-holder
+{
+    position: absolute;
+    top: 40px;
+
+    width: 434px;
 }

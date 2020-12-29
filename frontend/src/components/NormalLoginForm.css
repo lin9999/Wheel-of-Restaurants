@@ -1,17 +1,22 @@
 @import '~antd/dist/antd.css';
 
-.login-form {
-  position: relative;
-  width:400px;
-  top: 0px;
-  left: 0px;
+.login-form
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    width: 400px;
 }
-.login-form-forgot {
-  float: right;
+.login-form-forgot
+{
+    float: right;
 }
-.ant-col-rtl .login-form-forgot {
-  float: left;
+.ant-col-rtl .login-form-forgot
+{
+    float: left;
 }
-.login-form-button {
-  width: 400px;
+.login-form-button
+{
+    width: 400px;
 }

@@ -1,31 +1,41 @@
-div#root {
-    margin: 0;
-    padding: 0;
+div#root
+{
     width: 100%;
     /* full window width */
     height: 100%;
+    margin: 0;
+    padding: 0;
     /* full window height */
-    text-align: center;
-/*    background-color: #4646469c;
-*/}
 
-#normal_login {
-	padding: 13% 0;
-	margin: auto;
-    left: 15%;
+    text-align: center;
+    /*    background-color: #4646469c;
+*/
 }
 
-h3.footer {
-    display: block;
+#normal_login
+{
+    left: 15%;
+
+    margin: auto;
+    padding: 13% 0;
+}
+
+h3.footer
+{
     position: fixed;
     top: 716px;
     left: 630px;
+
+    display: block;
 }
 
-h3.gitIcon {
-    display: block;
+h3.gitIcon
+{
     position: fixed;
-    width: 500px;
-    left: 1000px;
     top: 730px;
+    left: 1000px;
+
+    display: block;
+
+    width: 500px;
 }
