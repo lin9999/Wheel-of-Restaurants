@@ -19,7 +19,9 @@ const instance = axios.create({
 function WTF() {
     const history = useHistory()
     const [user, setUser] = useState(null)
-
+    const [foodList, setFoodList] = useState(['Pizzas', 'Sandwiches', 'Salads', 'Apple', 'Banana', 'Cookies'])
+    const [listNum, setListNum] = useState(foodList.length)
+    
     const logout = () => {
         sessionStorage.removeItem('user')
         history.push({
@@ -40,13 +42,17 @@ function WTF() {
         }
     }, [])
 
+    const changeInputNumber = (num) => {
+        setListNum(num)
+    }
+
     return (
         <React.Fragment>
 			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
-			<Wheel className="Wheel" items={['Pizzas', 'Sandwiches', 'Salads', 'a', 'b', 'c']} />
+			<Wheel className="Wheel" items={foodList.slice(0, listNum)} />
 			<div className="Choices">
 				<h3>Choices:</h3>
-				<InputNumber min={1} max={10} defaultValue={3} />
+				<InputNumber min={1} max={foodList.length} defaultValue={foodList.length} onChange={changeInputNumber}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList"/>
