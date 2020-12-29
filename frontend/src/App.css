@@ -1,118 +1,41 @@
-div#root {
-    margin: 0;
-    padding: 0;
+div#root
+{
     width: 100%;
     /* full window width */
     height: 100%;
+    margin: 0;
+    padding: 0;
     /* full window height */
+
     text-align: center;
+    /*    background-color: #4646469c;
+*/
 }
 
-.background {
-    width: 100%;
-    position: fixed;
-    left: 0%;
-    z-index: -1;
-}
-
-#normal_login {
-	padding: 13% 0;
-	margin: auto;
+#normal_login
+{
     left: 15%;
+
+    margin: auto;
+    padding: 13% 0;
 }
 
-h3.footer {
+h3.footer
+{
     position: fixed;
-    top: 90%;
-    left: 45%;
+    top: 716px;
+    left: 630px;
+
+    display: block;
 }
 
-h3.gitIcon {
-    position: relative;
-    left: 30%;
-    top: 12%;
+h3.gitIcon
+{
+    position: fixed;
+    top: 730px;
+    left: 1000px;
+
+    display: block;
+
+    width: 500px;
 }
-
-.wheel {
-    width: 40%;
-    position: relative;
-    top: 70px;
-}
-
-/*div.Form {
-    background-color: #50f5d7cc;
-    height: 90%;
-    width: 70%;
-    position: relative;
-    top: -45%;
-    left: 30%;
-}
-
-div.LeftBlock {
-    position: relative;
-    width: 30%;
-    height: 45%;
-    background-color: #ff9900bf;
-    top: -90%;
-    left: 0%;
-}
-
-div.FooterBlock {
-    background-color: #4646469c;
-    height: 10%;
-    width: 100%;
-    position: relative;
-    top: -90%;
-}
-
-div.TextBlock {
-    width: 100%;
-    height: 33.3%;
-}
-
-h1.titleCap {
-    font-family: 'Libre Baskerville', serif;
-    fontSize: 675%;
-    font-weight: 700;
-    line-height: 80%;
-
-    float: left;
-
-    padding: 18px;
-
-    color: #f2f2f2;
-    background-color: #ff4a4a;
-    height: 100%;
-    width: 33.3%;
-
-    position: relative;
-
-}
-
-h1#F {
-    left: -66.6%;
-}
-
-h1.titleLow {
-    font-family: 'Libre Baskerville', serif;
-    fontSize: 675%;
-    font-weight: 700;
-    line-height: 80%;
-
-    position: relative;
-}
-
-h1#here {
-    top: 17%;
-    left: -3%;
-}
-
-h1#o {
-    top: 20%;
-    left: -2%;
-}
-
-h1#east {
-    top: -120%;
-    left: 2%;
-}*/

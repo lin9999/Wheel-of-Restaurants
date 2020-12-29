@@ -1,0 +1,129 @@
+
+div.FormBlock
+{
+    position: absolute;
+    z-index: -1;
+    left: 432px;
+
+    width: 1010px;
+    height: 720px;
+
+    background-color: #50f5d7cc;
+}
+
+div.TitleBlock
+{
+    position: absolute;
+    z-index: -1;
+
+    display: block;
+
+    width: 433px;
+    height: 360px;
+
+    background-color: #00b8ffdb;
+}
+
+div.LeftBlock
+{
+    position: absolute;
+    z-index: -1;
+    top: 360px;
+
+    display: block;
+
+    width: 433px;
+    height: 360px;
+
+    background-color: #ff9900bf;
+}
+
+div.FooterBlock
+{
+    position: absolute;
+    z-index: -1;
+    top: 720px;
+
+    display: block;
+
+    width: 1442px;
+    height: 75px;
+
+    background-color: #4646469c;
+}
+
+div.SmallSquare
+{
+    width: 144px;
+    height: 120px;
+
+    border-style: solid;
+    border-color: #fff;
+    background-color: #ff4a4a;
+}
+
+div.BigSquare
+{
+    position: absolute;
+    top: 0;
+    left: 144px;
+
+    width: 288px;
+    height: 240px;
+
+    border-style: solid;
+    border-color: #fff;
+    background-color: #994aff82;
+}
+
+h1.BigTitle
+{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 100px;
+    font-weight: 900;
+
+    position: absolute;
+    top: 42px;
+    left: 2px;
+}
+
+h1.SmallTitle
+{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 75px;
+    font-weight: 900;
+}
+
+div#W
+{
+    background-color: #00b8ffdb;
+}
+
+div#F
+{
+    background-color: #00b8ffdb;
+}
+
+div#oo
+{
+    position: absolute;
+    top: 240px;
+    left: 144px;
+}
+
+img.cookie
+{
+    position: relative;
+    top: 35px;
+
+    width: 55px;
+}
+
+div#d
+{
+    position: absolute;
+    top: 240px;
+    left: 288px;
+
+    background-color: #00b8ffdb;
+}
