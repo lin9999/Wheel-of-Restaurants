@@ -1,7 +1,8 @@
 .Choices {
-	display:  block;
 	position: relative;
 	top: 10px;
+	left:620px;
+	width: 200px;
 }
 
 #rectangle{
@@ -21,12 +22,9 @@
 	left:1350px;
 }
 
-.Wheel{
-	display: block;
-	position: sticky;
-}
-
-h1#title{
-	display: block;
-	position: sticky;
+h1#Title{
+	position: relative;
+	top: 0px;
+	left:530px;
+	width:400px;
 }

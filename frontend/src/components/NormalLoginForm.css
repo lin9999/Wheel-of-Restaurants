@@ -1,8 +1,10 @@
 @import '~antd/dist/antd.css';
 
 .login-form {
-  max-width: 30%;
   position: relative;
+  width:400px;
+  top: 0px;
+  left: 0px;
 }
 .login-form-forgot {
   float: right;
@@ -11,5 +13,5 @@
   float: left;
 }
 .login-form-button {
-  width: 100%;
+  width: 400px;
 }

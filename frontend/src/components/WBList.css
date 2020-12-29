@@ -1,0 +1,19 @@
+.SearchBar {
+	position: relative;
+	top: -100px;
+	lefy:30%;
+}
+
+.Tabs {
+	display: block;
+	position: absolute; 
+	width: 434px;
+	height: 400px; 
+	top: 360px;
+}
+
+.ant-tabs-content-holder{
+	position:  absolute;
+	top: 40px;
+	width:434px;
+}
