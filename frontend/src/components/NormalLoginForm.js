@@ -47,17 +47,11 @@ function NormalLoginForm() {
 	        } else {
 	        	alert(ret.data.message)
 	        }
+	        login()
     	}
     }
 
-    const clearAll = async () => {
-    	sessionStorage.removeItem('user')
-        await instance.delete('/danger/clearAll')
-    }
 
-    const printCookie = () => {
-    	alert(document.cookie)
-    }
 
 	const onFinish = (values) => {
 		console.log('Received values of form: ', values)
@@ -112,12 +106,6 @@ function NormalLoginForm() {
 						Register now!
 					</Button>
 					<a href="TODO">Forgot password</a>		
-					<Button type="danger" onClick={clearAll}>
-					CLEAR
-					</Button>
-					<Button type="danger" onClick={printCookie}>
-					COOKIE
-					</Button>
 				</Form.Item>
 			</Form>
 		</div>

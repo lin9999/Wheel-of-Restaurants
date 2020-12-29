@@ -42,13 +42,12 @@ async function SignUp(req, res) {
 		.findOne({})
 		.sort('-UID')
 		.exec(function(err, userWithMaxID) {
-			const newAccount = req.body
 			if (!userWithMaxID) {
 				req.body.UID = 0
 			} else {
 				req.body.UID = userWithMaxID.UID + 1
 			}
-
+			const newAccount = req.body
 			Account.create(newAccount, function(err, account, next) {
 				if (err) {
 					if (err.name === 'MongoError' && err.code === 11000)
@@ -62,13 +61,4 @@ async function SignUp(req, res) {
 		}) 
 }
 
-async function ClearAll(req, res) {
-	Account.remove({}, function(err) { 
-	   console.log('[Warning]: \"Account\" collection removed') 
-	});
-	RND2UID.remove({}, function(err) { 
-	   console.log('[Warning]: \"RND2UID\" collection removed') 
-	});
-}
-
-export { Authenticate, SignUp, ClearAll }
+export { Authenticate, SignUp }
