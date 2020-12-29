@@ -6,6 +6,7 @@ import { PieChartOutlined, HeartFilled, CopyrightOutlined, GithubOutlined } from
 import Background from './components/Background'
 import React from 'react'
 import { BrowserRouter, Route } from "react-router-dom"
+import { Button } from 'antd'
 
 function App() {
     return (
@@ -20,7 +21,10 @@ function App() {
 				<PieChartOutlined/> <br/> <CopyrightOutlined /> 2020 by WTF <br/> Proudly created with <HeartFilled />
 			</h3>
 			<h3 className="gitIcon">
-				Follow us: &nbsp;<GithubOutlined /> <GithubOutlined /> <GithubOutlined />
+				Give us a star: &nbsp; 
+				<Button type="text" href="https://github.com/ChangOliver/Wheel-of-Restaurants" > 
+					 <GithubOutlined/>
+				</Button>
 			</h3>
 		</React.Fragment>
     );
