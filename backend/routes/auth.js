@@ -14,7 +14,7 @@ async function Authenticate(req, res) {
 					throw new Error("No such user!")
 				if (req.body.password === account.password) {
 					console.log("[Login]: User " + account.userName + " is logged in")
-					const newMapping = { RND: genRND(), UID: account.UID }
+					const newMapping = { RND: genRND(), UID: account._id }
 					
 					RND2UID.create(newMapping, function(err, mapping, next) {
 						if (err) {
@@ -38,27 +38,18 @@ async function Authenticate(req, res) {
 }
 
 async function SignUp(req, res) {
-	Account
-		.findOne({})
-		.sort('-UID')
-		.exec(function(err, userWithMaxID) {
-			if (!userWithMaxID) {
-				req.body.UID = 0
-			} else {
-				req.body.UID = userWithMaxID.UID + 1
-			}
-			const newAccount = req.body
-			Account.create(newAccount, function(err, account, next) {
-				if (err) {
-					if (err.name === 'MongoError' && err.code === 11000)
-						console.log("[Error]: User name existed!")
-						res.status(200).send({ message: "User name existed!" })
-				} else {
-					console.log("[Create]: " + JSON.stringify(newAccount))
-					res.status(200).send({ message: "Success" })						
-				}
-			})
-		}) 
+	const newAccount = req.body
+	console.log(req.body)
+	Account.create(newAccount, function(err, account, next) {
+		if (err) {
+			if (err.name === 'MongoError' && err.code === 11000)
+				console.log("[Error]: User name existed!")
+				res.status(200).send({ message: "User name existed!" })
+		} else {
+			console.log("[Create]: " + JSON.stringify(newAccount))
+			res.status(200).send({ message: "Success" })						
+		}
+	})
 }
 
 export { Authenticate, SignUp }

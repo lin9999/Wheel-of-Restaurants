@@ -1,9 +1,7 @@
-import { Form, Input, Button } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
 
 import React, { useState } from 'react'
 import axios from 'axios'
-import { parse as cookieParser} from 'cookie'
 
 const API_ROOT = 'http://localhost:4000/development'
 const instance = axios.create({
@@ -60,21 +58,27 @@ function Development() {
 			<div>地區Tag: <input type="text" onChange={(e)=>{setRegionTag(e.target.value)}}></input></div>
 			<div>種類Tag: <input type="text" onChange={(e)=>{setCategoryTag(e.target.value)}}></input></div>
 			<div>價格Tag: <input type="text" onChange={(e)=>{setPriceTag(e.target.value)}}></input></div>
-			<Button type="primary" htmlType="submit" className="login-form-button" onClick={addNewRestaurant}>
-				Add Restaurant!
-			</Button>
-			<Button type="danger" onClick={clearUsers}>
-				CLEAR USERS
-			</Button>
-			<Button type="danger" onClick={clearRestaurants}>
-				CLEAR RESTAURANTS
-			</Button>
-			<Button type="danger" onClick={printCookie}>
-				COOKIE
-			</Button>
-			<Button type="danger" onClick={getRestaurantList}>
-				RESTAURANT LIST
-			</Button>
+			<p>
+				<Button type="primary" htmlType="submit" className="login-form-button" onClick={addNewRestaurant}>
+					Add Restaurant!
+				</Button>
+			</p>
+			<p>
+				<Button type="danger" onClick={printCookie}>
+					COOKIE
+				</Button>
+				<Button type="danger" onClick={getRestaurantList}>
+					RESTAURANT LIST
+				</Button>
+			</p>
+			<p>
+				<Button type="danger" onClick={clearUsers}>
+					CLEAR USERS
+				</Button>
+				<Button type="danger" onClick={clearRestaurants}>
+					CLEAR RESTAURANTS
+				</Button>
+			</p>
 		</div>
 		</React.Fragment>
 	)

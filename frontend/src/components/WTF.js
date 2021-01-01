@@ -6,7 +6,6 @@ import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom';
 import { parse as cookieParser } from 'cookie'
 
-import User from '../classes/User.js'
 import Wheel from "./Wheel"
 import WBList from './WBList'
 

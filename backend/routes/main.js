@@ -12,7 +12,7 @@ async function GetUserInfo(req, res) {
 			} else {
 				const UID = mapping.UID
 				Account
-					.findOne({ UID: UID })
+					.findOne({ _id: UID })
 					.exec(function (err, account) {
 						if (!account) {
 							console.log("[Error]: Fatal error - Account with UID not found!")

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const RND2UID = Schema({
 		RND: { type: String, required: true, unique: true },
-		UID: { type: Number, required: true}
+		UID: { type: String, required: true}
 	}, {
 		collection: 'RND2UID mapping',
 		timestamps: { createdAt: 'created_at'}

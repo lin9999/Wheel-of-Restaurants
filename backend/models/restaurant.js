@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const RestaurantSchema = Schema({
-		RID: { type: Number, required: true, unique: true },
 		restaurantName: { type: String, required: true, unique: true },
 		googleurl: { type: String, required: true}, 
 		mapurl: { type: String, required: true },
@@ -12,6 +11,7 @@ const RestaurantSchema = Schema({
 		categoryTag: { type: String },
 		priceTag: { type: String } ,
 	}, {
+		_id: true,
 		collection: 'Restaurant',
 	})
 

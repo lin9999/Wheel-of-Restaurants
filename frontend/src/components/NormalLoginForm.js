@@ -5,9 +5,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { parse as cookieParser} from 'cookie'
-
-import User from '../classes/User.js'
+import { displayStatus } from './Util'
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
@@ -19,24 +17,25 @@ function NormalLoginForm() {
 	const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
-	const getUserInfo = async () => {
-		const cookies = cookieParser(document.cookie)
-		const ret = await instance.get('/getInfo?RND=' + cookies.RND)
+	const getUserInfo = async (RND) => {
+		const ret = await instance.get('/getInfo?RND=' + RND)
 		return ret.data
 	}
 
     const login = async () => {
-        const ret = await instance.post('/auth', { userName: userName, password: password })
-        if (ret.data.message === "Success") {
-	        document.cookie = "RND=" + ret.data.RND
-        	const info = await getUserInfo()
-        	sessionStorage.setItem('user', JSON.stringify(info))
-        	history.push({
-    			pathname: "/WTF"
-    		})
-        } else {
-        	alert(ret.data.message)
-        }
+    	if (userName && password) {
+	        const ret = await instance.post('/auth', { userName: userName, password: password })
+	        if (ret.data.message === "Success") {
+	        	const info = await getUserInfo(ret.data.RND)
+	        	console.log(info)
+	        	sessionStorage.setItem('user', JSON.stringify(info))
+	        	history.push({
+	    			pathname: "/WTF"
+	    		})
+	        } else {
+	        	alert(ret.data.message)
+	        }
+	    }
     }
 
     const signUp = async () => {
@@ -66,7 +65,12 @@ function NormalLoginForm() {
 					remember: true,
 				}}
 				onFinish={onFinish}
-				onFinishFailed={()=>{ alert("Username and Password should not be empty!") }}
+				onFinishFailed={()=>{ 
+					displayStatus({
+		                type: 'error',
+		                msg: 'Please enter a username and a password.'
+		            })
+             	}}
 			>
 				<Form.Item
 					name="username"
