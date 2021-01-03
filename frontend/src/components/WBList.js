@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, List, Checkbox, Button } from 'antd'
+import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
 import './WBList.css'
 

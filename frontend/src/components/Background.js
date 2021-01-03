@@ -19,15 +19,15 @@ function Background(){
 				<h1 className="SmallTitle">F</h1>
 			</div>
 			<div className="SmallSquare" id="oo">
-				<img src={cookie} className="cookie"/>
-				<img src={cookie} className="cookie"/>
+				<img src={cookie} alt="round cookie" className="cookie"/>
+				<img src={cookie} alt="round cookie" className="cookie"/>
 			</div>
 			<div className="SmallSquare" id="d">
 				<h1 className="SmallTitle">d</h1>
 			</div>
 		</div>
 		<div className="FormBlock"></div>
-		<div className="LeftBlock"></div>
+		<div className="ListBlock"></div>
 		<div className="FooterBlock"></div>
 	</React.Fragment>
 

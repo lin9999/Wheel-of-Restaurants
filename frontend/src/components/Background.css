@@ -24,7 +24,7 @@ div.TitleBlock
     background-color: #00b8ffdb;
 }
 
-div.LeftBlock
+div.ListBlock
 {
     position: absolute;
     z-index: -1;
