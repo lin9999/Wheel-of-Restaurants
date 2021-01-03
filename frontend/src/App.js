@@ -1,7 +1,7 @@
 import './App.css';
-import NormalLoginForm from './components/NormalLoginForm'
-import WTF from './components/WTF'
-import Development from './components/Development'
+import Login from './container/Login'
+import WTF from './container/WTF'
+import Development from './container/Development'
 import { PieChartOutlined, HeartFilled, CopyrightOutlined, GithubOutlined } from '@ant-design/icons'
 import Background from './components/Background'
 import React from 'react'
@@ -13,7 +13,7 @@ function App() {
         <React.Fragment>
 			<Background/>
             <BrowserRouter>
-				<Route exact path="/" component={NormalLoginForm} />
+				<Route exact path="/" component={Login} />
 				<Route exact path="/WTF" component={WTF} /> 
 				<Route exact path="/Development/Development" component={Development}></Route>
             </BrowserRouter>

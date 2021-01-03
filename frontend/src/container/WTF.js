@@ -1,13 +1,12 @@
-import './WTF.css';
-import './NormalLoginForm.css'
+import './WTF.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom'
 import { parse as cookieParser } from 'cookie'
 
-import Wheel from "./Wheel"
-import WBList from './WBList'
+import Wheel from "../components/Wheel"
+import WBList from '..//components/WBList'
 
 
 const API_ROOT = 'http://localhost:4000/api'

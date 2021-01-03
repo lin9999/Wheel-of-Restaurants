@@ -1,18 +1,18 @@
-import './NormalLoginForm.css'
+import './Login.css'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { displayStatus } from './Util'
+import { displayStatus } from '../components/Util'
 
 const API_ROOT = 'http://localhost:4000/api'
 const instance = axios.create({
     baseURL: API_ROOT
 })
 
-function NormalLoginForm() {
+function Login() {
 	const history = useHistory()
 	const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -114,4 +114,4 @@ function NormalLoginForm() {
 	);
 };
 
-export default NormalLoginForm;
+export default Login;
