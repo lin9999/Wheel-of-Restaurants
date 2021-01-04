@@ -6,7 +6,7 @@ const RND2UID = Schema({
 		RND: { type: String, required: true, unique: true },
 		UID: { type: String, required: true}
 	}, {
-		collection: 'RND2UID mapping',
+		collection: 'RND2UID_mapping',
 		timestamps: { createdAt: 'created_at'}
 	})
 

@@ -1,8 +1,8 @@
+import './WBList.css'
 import React from 'react'
 import { Tabs, List, Checkbox, Button } from 'antd'
 import SearchBar from './SearchBar' 
-import './WBList.css'
-
+import { instance } from './Util'
 
 function WBList(){
 

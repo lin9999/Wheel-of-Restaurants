@@ -1,7 +1,13 @@
+import axios from 'axios'
 import { message } from 'antd'
 
+const API_ROOT = 'http://localhost:4000/api'
+const instance = axios.create({
+    baseURL: API_ROOT
+})
 
-export const displayStatus = (s) => {
+
+const displayStatus = (s) => {
     if (s.msg) {
         const { type, msg } = s
         const content = {
@@ -16,10 +22,12 @@ export const displayStatus = (s) => {
             case 'info':
                 message.info(content)
                 break
-            case 'danger':
+            case 'error':
             default:
                 message.error(content)
                 break
         }
     }
 }
+
+export { instance, displayStatus }

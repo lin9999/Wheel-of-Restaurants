@@ -9,6 +9,7 @@ function main(app) {
     app.post('/api/auth', wrap(Authenticate))
 
     app.get('/api/getInfo', wrap(GetUserInfo))
+    app.get('/api/getRestaurantList', wrap(getRestaurantList))
 
     app.post('/development/addRestaurant', wrap(addNewRestaurant))
     app.delete('/development/clearUsers', wrap(ClearUsers))

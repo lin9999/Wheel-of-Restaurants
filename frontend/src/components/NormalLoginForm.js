@@ -4,13 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
-import { displayStatus } from './Util'
-
-const API_ROOT = 'http://localhost:4000/api'
-const instance = axios.create({
-    baseURL: API_ROOT
-})
+import { instance, displayStatus } from './Util'
 
 function NormalLoginForm() {
 	const history = useHistory()
@@ -26,6 +20,11 @@ function NormalLoginForm() {
     	if (userName && password) {
 	        const ret = await instance.post('/auth', { userName: userName, password: password })
 	        if (ret.data.message === "Success") {
+	        	displayStatus({
+	        		type: 'success', 
+	        		msg: 'Welcome!'
+	        	})
+
 	        	const info = await getUserInfo(ret.data.RND)
 	        	console.log(info)
 	        	sessionStorage.setItem('user', JSON.stringify(info))
@@ -33,7 +32,10 @@ function NormalLoginForm() {
 	    			pathname: "/WTF"
 	    		})
 	        } else {
-	        	alert(ret.data.message)
+	        	displayStatus({
+	        		type: 'error', 
+	        		msg: ret.data.message
+	        	})
 	        }
 	    }
     }
@@ -43,10 +45,13 @@ function NormalLoginForm() {
 	        const ret = await instance.post('/signup', { userName: userName, password: password })
 	        if (ret.data.message === "Success") {
 		        console.log(ret.data.message)
+		        login()
 	        } else {
-	        	alert(ret.data.message)
+	        	displayStatus({
+	        		type: 'error', 
+	        		msg: ret.data.message
+	        	})
 	        }
-	        login()
     	}
     }
 
@@ -68,7 +73,7 @@ function NormalLoginForm() {
 				onFinishFailed={()=>{ 
 					displayStatus({
 		                type: 'error',
-		                msg: 'Please enter a username and a password.'
+		                msg: 'Please enter your Username and Password.'
 		            })
              	}}
 			>

@@ -2,25 +2,31 @@ import './WTF.css';
 import './NormalLoginForm.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom';
 import { parse as cookieParser } from 'cookie'
 
+import { instance } from './Util'
 import Wheel from "./Wheel"
 import WBList from './WBList'
 
+const getFoodList = async (setFoodList, setListNum) => {
+	const ret = await instance.get('/getRestaurantList')
+	setFoodList(ret.data)	
+	setListNum(ret.data.length)
+}
 
-const API_ROOT = 'http://localhost:4000/api'
-const instance = axios.create({
-    baseURL: API_ROOT
-})
+const getFoodNameList = (foodList) => {
+	if (foodList.length == 0) 
+		return []
+	return foodList.map(({ restaurantName, ...rest }) => (restaurantName))
+}
 
 function WTF() {
     const history = useHistory()
     const [user, setUser] = useState(null)
-    const [foodList, setFoodList] = useState(['Pizzas', 'Sandwiches', 'Salads', 'Apple', 'Banana', 'Cookies'])
+    const [foodList, setFoodList] = useState([])
     const [listNum, setListNum] = useState(foodList.length)
-    
+
     const logout = () => {
         sessionStorage.removeItem('user')
         history.push({
@@ -39,21 +45,20 @@ function WTF() {
                 pathname: "/"
             })
         }
+        getFoodList(setFoodList, setListNum)
     }, [])
-
-    const changeInputNumber = (num) => {
-        setListNum(num)
-    }
 
     return (
         <React.Fragment>
 			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
 			<div className="Wheel">
-                <Wheel  items={foodList.slice(0, listNum)} />
+				{ 
+					(foodList) ? <Wheel  items={getFoodNameList(foodList).slice(0, listNum)} /> : <div></div>
+				}
 			</div>
             <div className="Choices">
 				<h3>Choices:</h3>
-				<InputNumber min={1} max={foodList.length} defaultValue={foodList.length} onChange={changeInputNumber}/>
+				<InputNumber min={1} max={foodList.length} value={listNum} onChange={(num) => {setListNum(num)}}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList"/>
