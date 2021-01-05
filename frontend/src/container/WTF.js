@@ -16,7 +16,7 @@ const getFoodList = async (setFoodList, setListNum) => {
 const getFoodNameList = (foodList) => {
 	if (foodList.length == 0) 
 		return []
-	return foodList.map(({ restaurantName, ...rest }) => (restaurantName))
+	return foodList.map(({ _id, restaurantName, ...rest }) => ({_id, restaurantName}))
 }
 
 function WTF() {
@@ -26,12 +26,17 @@ function WTF() {
     const [foodList, setFoodList] = useState(null)
     const [foodListLoaded, setFoodListLoaded] = useState(false)
     const [listNum, setListNum] = useState(0)
+    const [selected, setSelected] = useState(0)
 
     const logout = () => {
         sessionStorage.removeItem('user')
         history.push({
             pathname: "/"
         })
+    }
+
+    const onSelect = (selectedItem) => {
+        setSelected(selectedItem)
     }
 
     useEffect(() => {
@@ -70,17 +75,21 @@ function WTF() {
 			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
             <div className="Wheel">
 				{ 
-					(foodListLoaded) ? <Wheel  items={getFoodNameList(foodList).slice(0, listNum)} /> : <div></div>
+                    (foodListLoaded) ? <Wheel  items={getFoodNameList(foodList).slice(0, listNum)} /> : <div></div>
 				}
 			</div>
             <div className="Choices">
-				<h3>Choices:</h3>
-				<InputNumber min={1} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
+				<h3>Choices: </h3>
+                <InputNumber min={1} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
-			<WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserUpdate={handleUserUpdate} />
-			<div id="rectangle">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.5422750791413!2d121.52976981483384!3d25.01566478398093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a98b83382edb%3A0x6ddbabb446640066!2z5rKZ5Zey5aOr5aSa!5e0!3m2!1szh-TW!2stw!4v1609229253362!5m2!1szh-TW!2stw" width="600" height="450" frameborder="0" style={{border: 0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserUpdate={handleUserUpdate} />
+			<div id="map">
+                <iframe src={(foodList) ? foodList[selected].mapurl : ""}
+                        width="450" 
+                        height="600"
+                        frameBorder="10">
+                </iframe>
             </div>
 		</React.Fragment>
     );

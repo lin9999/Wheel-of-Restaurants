@@ -3,6 +3,8 @@ import { Button } from 'antd'
 import React, { useState } from 'react'
 import axios from 'axios'
 
+import './Development.css'
+
 const API_ROOT = 'http://localhost:4000/development'
 const instance = axios.create({
     baseURL: API_ROOT
@@ -54,36 +56,37 @@ function Development() {
 
 	return(
 		<React.Fragment>
-		<div className="formwrapper">
-			<div>餐廳名稱: <input type="text" onChange={(e)=>{setRestaurantName(e.target.value)}}></input></div>
-			<div>Google連結: <input type="text" onChange={(e)=>{setGoogleurl(e.target.value)}}></input></div>
-			<div>地圖連結: <input type="text" onChange={(e)=>{setMapurl(e.target.value)}}></input></div>
-			<div>地址: <input type="text" onChange={(e)=>{setAddress(e.target.value)}}></input></div>
-			<div>地區Tag: <input type="text" onChange={(e)=>{setRegionTag(e.target.value)}}></input></div>
-			<div>種類Tag: <input type="text" onChange={(e)=>{setCategoryTag(e.target.value)}}></input></div>
-			<div>價格Tag: <input type="text" onChange={(e)=>{setPriceTag(e.target.value)}}></input></div>
-			<p>
-				<Button type="primary" htmlType="submit" className="login-form-button" onClick={addNewRestaurant}>
-					Add Restaurant!
-				</Button>
-			</p>
-			<p>
-				<Button type="danger" onClick={printCookie}>
-					COOKIE
-				</Button>
-				<Button type="danger" onClick={getRestaurantList}>
-					RESTAURANT LIST
-				</Button>
-			</p>
-			<p>
-				<Button type="danger" onClick={clearUsers}>
-					CLEAR USERS
-				</Button>
-				<Button type="danger" onClick={clearRestaurants}>
-					CLEAR RESTAURANTS
-				</Button>
-			</p>
-		</div>
+			<div className="formwrapper">
+				<h1> Developer's Page</h1>
+				<input placeholder="餐廳名稱" type="text" onChange={(e)=>{setRestaurantName(e.target.value)}}/>
+				<input placeholder="Google連結" type="text" onChange={(e)=>{setGoogleurl(e.target.value)}}/>
+				<input placeholder="地圖連結" type="text" onChange={(e)=>{setMapurl(e.target.value)}}/>
+				<input placeholder="地址" type="text" onChange={(e)=>{setAddress(e.target.value)}}/>
+				<input placeholder="地區Tag" type="text" onChange={(e)=>{setRegionTag(e.target.value)}}/>
+				<input placeholder="種類Tag" type="text" onChange={(e)=>{setCategoryTag(e.target.value)}}/>
+				<input placeholder="價格Tag" type="text" onChange={(e)=>{setPriceTag(e.target.value)}}/>
+				<p>
+					<Button type="primary" htmlType="submit" className="login-form-button" onClick={addNewRestaurant}>
+						Add Restaurant!
+					</Button>
+				</p>
+				<p>
+					<Button type="danger" onClick={printCookie}>
+						COOKIE
+					</Button>
+					<Button type="danger" onClick={getRestaurantList}>
+						RESTAURANT LIST
+					</Button>
+				</p>
+				<p>
+					<Button type="danger" onClick={clearUsers}>
+						CLEAR USERS
+					</Button>
+					<Button type="danger" onClick={clearRestaurants}>
+						CLEAR RESTAURANTS
+					</Button>
+				</p>
+			</div>
 		</React.Fragment>
 	)
 }

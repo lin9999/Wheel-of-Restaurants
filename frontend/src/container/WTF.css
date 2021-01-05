@@ -7,18 +7,14 @@
     width: 200px;
 }
 
-#rectangle
+#map
 {
     position: relative;
-    top: -500px;
-    left: 1000px;
-
-    display: block;
-
-    width: 370px;
-    height: 370px;
-
-    background: blue;
+    top: -580px;
+    left: 960px;
+    display:  block;
+    width: 450px;
+    height: 600px;
 }
 
 .LOGOUT
