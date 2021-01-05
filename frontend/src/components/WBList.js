@@ -81,7 +81,7 @@ function WBList(props) {
 								<List.Item key={item._id}>
 									<List.Item.Meta
 										title={<a href="">{item.restaurantName}</a>}
-										description="description"
+										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('favorite', item._id)}} style={{"background":"red"}}>Remove</Button>
@@ -103,7 +103,7 @@ function WBList(props) {
 								<List.Item key={item._id}>
 									<List.Item.Meta
 										title={<a href="">{item.restaurantName}</a>}
-										description="description"
+										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('blacklist', item._id)}} style={{"background":"red"}}>Remove</Button>								
