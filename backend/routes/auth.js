@@ -1,5 +1,6 @@
 import Account from "../models/account.js"
 import RND2UID from "../models/RND2UID.js"
+import bcrypt from "bcryptjs"
 
 function genRND() {
 	return  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -12,7 +13,9 @@ async function Authenticate(req, res) {
 			try {
 				if (!account)
 					throw new Error("No such user!")
-				if (req.body.password === account.password) {
+
+				const cmpResult = await bcrypt.compare(req.body.password, account.password)
+				if (cmpResult) {
 					console.log("[Login]: User " + account.userName + " is logged in")
 					const newMapping = { RND: genRND(), UID: account._id }
 					
@@ -39,7 +42,8 @@ async function Authenticate(req, res) {
 
 async function SignUp(req, res) {
 	const newAccount = req.body
-	console.log(req.body)
+	newAccount.password = await bcrypt.hash(newAccount.password, 10)
+	console.log(newAccount)
 	Account.create(newAccount, function(err, account, next) {
 		if (err) {
 			if (err.name === 'MongoError' && err.code === 11000)
