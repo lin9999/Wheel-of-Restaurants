@@ -27,7 +27,6 @@ export default class Wheel extends React.Component {
   render() {
     const { selectedItem } = this.state;
     const { items } = this.props;
-
     const wheelVars = {
       '--nb-item': items.length,
       '--selected-item': selectedItem,

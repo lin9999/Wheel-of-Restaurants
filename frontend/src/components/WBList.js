@@ -4,14 +4,47 @@ import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
 import { instance } from './Util'
 function WBList(props) {
-
 	const { TabPane } = Tabs;
-	const [data, setData] = useState([])
+	const [foodList, setFoodList] = useState([])
+	const [user, setUser] = useState(null)
+
 	useEffect(() => {
-		if (props.foodList) {
-			setData(props.foodList)
+		if (props.foodListState.foodListLoaded) {
+			setFoodList(props.foodListState.foodList)
 		}
-	}, [props.foodList])
+	}, [props.foodListState.foodListLoaded])
+
+	useEffect(() => {
+		if (props.userState.userLoaded) {
+			setUser(props.userState.user)
+		}
+	}, [props.userState.userLoaded])
+
+	const addToList = (listName, restaurantID) => {
+		if (listName === 'favorite') {
+			if (!user.favorite.includes(restaurantID))
+				setUser({...user, favorite: [restaurantID, ...user.favorite]})
+		} else if (listName === 'blacklist') {
+			if (!user.blacklist.includes(restaurantID))
+				setUser({...user, blacklist: [restaurantID, ...user.blacklist]})
+		}
+	}
+	const removeFromList = (listName, restaurantID) => {
+		if (listName === 'favorite') {
+			if (user.favorite.includes(restaurantID))
+				setUser({...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID != restaurantID})})
+		} else if (listName === 'blacklist') {
+			if (user.blacklist.includes(restaurantID))
+				setUser({...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID != restaurantID})})
+		}
+	}
+
+	useEffect(() => {
+		if (props.userState.userLoaded) {
+			props.handleUserUpdate(user)
+		}
+	}, [user])
+
 	return(
 		<React.Fragment>
 			<Tabs type="card" className="Tabs" defaultActiveKey="1" >
@@ -19,7 +52,7 @@ function WBList(props) {
 					<SearchBar className="SearchBar"/>
 					<nav>
 						<List
-							dataSource={data}
+							dataSource={props.foodListState.foodListLoaded ? foodList : []}
 							size="small"
 							renderItem={item => (
 								<List.Item key={item._id}>
@@ -28,8 +61,8 @@ function WBList(props) {
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}}>Wheel</Button>
-									<Button size="small" shape="round" type="primary" >Favorite</Button>
-									<Button size="small" shape="round" type="primary" style={{"background":"black"}}>BlackList</Button>								
+									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}}>Favorite</Button>
+									<Button size="small" shape="round" type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"black"}}>BlackList</Button>								
 								</List.Item>
 							)}
 						/>
@@ -39,7 +72,10 @@ function WBList(props) {
 					<SearchBar className="SearchBar"/>
 					<nav>
 						<List
-							dataSource={data}
+							dataSource={(props.foodListState.foodListLoaded && props.userState.userLoaded) ? 
+								foodList.filter((restaurant)=>{ return user.favorite.includes(restaurant._id) }) :
+								[]
+							}
 							size="small"
 							renderItem={item => (
 								<List.Item key={item._id}>
@@ -47,7 +83,7 @@ function WBList(props) {
 										title={<a href="">{item.restaurantName}</a>}
 										description="description"
 									/>
-									<Button size="small" shape="round" type="primary" style={{"background":"red"}}>Remove</Button>
+									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('favorite', item._id)}} style={{"background":"red"}}>Remove</Button>
 								</List.Item>
 							)}
 						/>
@@ -57,7 +93,10 @@ function WBList(props) {
 					<SearchBar className="SearchBar"/>
 					<nav>
 						<List
-							dataSource={data}
+							dataSource={(props.foodListState.foodListLoaded && props.userState.userLoaded) ? 
+								foodList.filter((restaurant)=>{ return user.blacklist.includes(restaurant._id) }) :
+								[]
+							}
 							size="small"
 							renderItem={item => (
 								<List.Item key={item._id}>
@@ -65,7 +104,7 @@ function WBList(props) {
 										title={<a href="">{item.restaurantName}</a>}
 										description="description"
 									/>
-									<Button size="small" shape="round" type="primary" style={{"background":"red"}}>Remove</Button>								
+									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('blacklist', item._id)}} style={{"background":"red"}}>Remove</Button>								
 								</List.Item>
 							)}
 						/>
