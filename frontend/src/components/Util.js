@@ -12,7 +12,7 @@ const displayStatus = (s) => {
         const { type, msg } = s
         const content = {
             content: msg,
-            duration: 0.6
+            duration: 0.8
         }
 
         switch (type) {

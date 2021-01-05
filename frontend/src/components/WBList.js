@@ -2,7 +2,7 @@ import './WBList.css'
 import React, { useState, useEffect} from 'react'
 import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
-import { instance } from './Util'
+import { instance, displayStatus } from './Util'
 function WBList(props) {
 	const { TabPane } = Tabs;
 	const [foodList, setFoodList] = useState([])
@@ -22,11 +22,23 @@ function WBList(props) {
 
 	const addToList = (listName, restaurantID) => {
 		if (listName === 'favorite') {
-			if (!user.favorite.includes(restaurantID))
+			if (user.blacklist.includes(restaurantID)) {
+				displayStatus({
+	        		type: 'error', 
+	        		msg: 'I thought you hate it...'
+	        	})
+			} else if (!user.favorite.includes(restaurantID)) {
 				setUser({...user, favorite: [restaurantID, ...user.favorite]})
+			}
 		} else if (listName === 'blacklist') {
-			if (!user.blacklist.includes(restaurantID))
+			if (user.favorite.includes(restaurantID)) {
+				displayStatus({
+	        		type: 'error', 
+	        		msg: 'I thought it is your favorite...'
+	        	})
+			} else if (!user.blacklist.includes(restaurantID)) {
 				setUser({...user, blacklist: [restaurantID, ...user.blacklist]})
+			}
 		}
 	}
 	const removeFromList = (listName, restaurantID) => {
