@@ -39,7 +39,7 @@ export default class Wheel extends React.Component {
         <div className={`wheel ${spinning}`} style={wheelVars} onClick={this.selectItem}>
           {items.map((item, index) => (
             <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
-              {item}
+              {item.name}
             </div>
           ))}
         </div>
