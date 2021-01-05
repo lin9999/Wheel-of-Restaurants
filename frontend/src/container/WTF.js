@@ -67,7 +67,7 @@ function WTF() {
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList" foodList={foodList}/>
 			<div id="map">
-                <iframe src={foodList[selected].mapurl}
+                <iframe src={(foodList) ? foodList[selected].mapurl : ""}
                         width="450" 
                         height="600"
                         frameBorder="10">
