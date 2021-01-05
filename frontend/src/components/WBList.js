@@ -1,40 +1,17 @@
 import './WBList.css'
-import React from 'react'
-import { Tabs, List, Checkbox, Button } from 'antd'
+import React, { useState, useEffect} from 'react'
+import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
 import { instance } from './Util'
-
-function WBList(){
+function WBList(props) {
 
 	const { TabPane } = Tabs;
-
-	const data = [
-		{
-			title: 'Ant Design Title 1',
-		},
-		{
-			title: 'Ant Design Title 2',
-		},
-		{
-			title: 'Ant Design Title 3',
-		},
-		{
-			title: 'Ant Design Title 4',
-		},
-		{
-			title: 'Ant Design Title 5',
-		},	
-		{
-			title: 'Ant Design Title 6',
-		},	
-		{
-			title: 'Ant Design Title 7',
-		},	
-		{
-			title: 'Ant Design Title 8',
-		},																		
-	];
-
+	const [data, setData] = useState([])
+	useEffect(() => {
+		if (props.foodList) {
+			setData(props.foodList)
+		}
+	}, [props.foodList])
 	return(
 		<React.Fragment>
 			<Tabs type="card" className="Tabs" defaultActiveKey="1" >
@@ -45,10 +22,10 @@ function WBList(){
 							dataSource={data}
 							size="small"
 							renderItem={item => (
-								<List.Item key={item.id}>
+								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.title}</a>}
-										description="description"
+										title={<a href="">{item.restaurantName}</a>}
+										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" >Favorite</Button>
@@ -65,9 +42,9 @@ function WBList(){
 							dataSource={data}
 							size="small"
 							renderItem={item => (
-								<List.Item key={item.id}>
+								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.title}</a>}
+										title={<a href="">{item.restaurantName}</a>}
 										description="description"
 									/>
 									<Button size="small" shape="round" type="primary" style={{"background":"red"}}>Remove</Button>
@@ -83,9 +60,9 @@ function WBList(){
 							dataSource={data}
 							size="small"
 							renderItem={item => (
-								<List.Item key={item.id}>
+								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.title}</a>}
+										title={<a href="">{item.restaurantName}</a>}
 										description="description"
 									/>
 									<Button size="small" shape="round" type="primary" style={{"background":"red"}}>Remove</Button>								

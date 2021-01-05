@@ -1,13 +1,12 @@
-import './WTF.css';
-import './NormalLoginForm.css'
+import './WTF.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
-import { useLocation, useHistory } from 'react-router-dom';
+import { instance } from '../components/Util'
+import { useLocation, useHistory } from 'react-router-dom'
 import { parse as cookieParser } from 'cookie'
 
-import { instance } from './Util'
-import Wheel from "./Wheel"
-import WBList from './WBList'
+import Wheel from "../components/Wheel"
+import WBList from '..//components/WBList'
 
 const getFoodList = async (setFoodList, setListNum) => {
 	const ret = await instance.get('/getRestaurantList')
@@ -24,8 +23,8 @@ const getFoodNameList = (foodList) => {
 function WTF() {
     const history = useHistory()
     const [user, setUser] = useState(null)
-    const [foodList, setFoodList] = useState([])
-    const [listNum, setListNum] = useState(foodList.length)
+    const [foodList, setFoodList] = useState(null)
+    const [listNum, setListNum] = useState(0)
 
     const logout = () => {
         sessionStorage.removeItem('user')
@@ -58,10 +57,10 @@ function WTF() {
 			</div>
             <div className="Choices">
 				<h3>Choices:</h3>
-				<InputNumber min={1} max={foodList.length} value={listNum} onChange={(num) => {setListNum(num)}}/>
+				<InputNumber min={1} max={foodList ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
-			<WBList classname="WBList"/>
+			<WBList classname="WBList" foodList={foodList}/>
 			<div id="rectangle"></div>
 		</React.Fragment>
     );

@@ -18,6 +18,10 @@ function Development() {
 	const [priceTag, setPriceTag] = useState([])
 
 	const addNewRestaurant = async () => {
+		if (!priceTag.match(/\${1,3}/)) {
+			alert('$, $$, or $$$')
+			return 
+		}
 		const ret = await instance.post('/addRestaurant', { 
 			restaurantName: restaurantName, 
 			googleurl: googleurl,

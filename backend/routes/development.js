@@ -37,9 +37,6 @@ async function getRestaurantList(req, res) {
 	Restaurant
 		.find({})
 		.exec(function(err, restaurants) {
-			restaurants.map((rest) => {
-				console.log(rest)
-			})
 			res.status(200).send(restaurants)
 		})
 }

@@ -1,12 +1,12 @@
-import './NormalLoginForm.css'
+import './Login.css'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { instance, displayStatus } from './Util'
+import { instance, displayStatus } from '../components/Util'
 
-function NormalLoginForm() {
+function Login() {
 	const history = useHistory()
 	const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -54,8 +54,6 @@ function NormalLoginForm() {
 	        }
     	}
     }
-
-
 
 	const onFinish = (values) => {
 		console.log('Received values of form: ', values)
@@ -121,4 +119,4 @@ function NormalLoginForm() {
 	);
 };
 
-export default NormalLoginForm;
+export default Login;
