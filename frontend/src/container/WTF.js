@@ -99,11 +99,15 @@ function WTF() {
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
             <WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserUpdate={handleUserUpdate} toggleWheel={toggleWheel}/>
 			<div id="map">
-                <iframe src={(foodList) ? foodList[selected].mapurl : ""}
+                {
+                (selected)?
+                <iframe src={(foodList) ? foodList.find((food) => food._id === selected).mapurl : ""}
                         width="450" 
                         height="600"
                         frameBorder="10">
                 </iframe>
+                : <div></div>
+                }
             </div>
 		</React.Fragment>
     );
