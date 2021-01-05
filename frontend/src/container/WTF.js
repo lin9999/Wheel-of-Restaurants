@@ -17,7 +17,7 @@ const getFoodList = async (setFoodList, setListNum) => {
 const getFoodNameList = (foodList) => {
 	if (foodList.length == 0) 
 		return []
-	return foodList.map(({ restaurantName, ...rest }) => (restaurantName))
+	return foodList.map(({ _id, restaurantName, ...rest }) => ({_id, restaurantName}))
 }
 
 function WTF() {
@@ -25,12 +25,18 @@ function WTF() {
     const [user, setUser] = useState(null)
     const [foodList, setFoodList] = useState(null)
     const [listNum, setListNum] = useState(0)
+    const [selected, setSelected] = useState("")
 
     const logout = () => {
         sessionStorage.removeItem('user')
         history.push({
             pathname: "/"
         })
+    }
+
+    const onSelect = (RID) => {
+        setSelected(RID)
+        console.log(foodList[1])
     }
 
     useEffect(() => {
@@ -52,17 +58,17 @@ function WTF() {
 			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
 			<div className="Wheel">
 				{ 
-					(foodList) ? <Wheel items={getFoodNameList(foodList).slice(0, listNum)} /> : <div></div>
+					(foodList) ? <Wheel items={getFoodNameList(foodList).slice(0, listNum)} onSelect={onSelect}/> : <div></div>
 				}
 			</div>
             <div className="Choices">
-				<h3>Choices:</h3>
+				<h3>Choices: </h3>
 				<InputNumber min={1} max={foodList ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList" foodList={foodList}/>
 			<div id="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.3521692584786!2d121.53938181483393!3d25.022119983977902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aa28bc175111%3A0xfc0c286ca63e50b8!2z6Z-T5Zac5aCC!5e0!3m2!1szh-TW!2stw!4v1609229705316!5m2!1szh-TW!2stw" 
+                <iframe src=""
                         width="450" 
                         height="600"
                         frameBorder="10">
