@@ -25,7 +25,7 @@ function WTF() {
     const [user, setUser] = useState(null)
     const [foodList, setFoodList] = useState(null)
     const [listNum, setListNum] = useState(0)
-    const [selected, setSelected] = useState("")
+    const [selected, setSelected] = useState(0)
 
     const logout = () => {
         sessionStorage.removeItem('user')
@@ -34,9 +34,8 @@ function WTF() {
         })
     }
 
-    const onSelect = (RID) => {
-        setSelected(RID)
-        console.log(foodList[1])
+    const onSelect = (selectedItem) => {
+        setSelected(selectedItem)
     }
 
     useEffect(() => {
@@ -68,7 +67,7 @@ function WTF() {
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
 			<WBList classname="WBList" foodList={foodList}/>
 			<div id="map">
-                <iframe src=""
+                <iframe src={foodList[selected].mapurl}
                         width="450" 
                         height="600"
                         frameBorder="10">
