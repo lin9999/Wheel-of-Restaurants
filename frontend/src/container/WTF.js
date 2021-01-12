@@ -94,7 +94,7 @@ function WTF() {
 			</div>
             <div className="Choices">
 				<h3>Choices: </h3>
-                <InputNumber min={0} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
+                <InputNumber min={0} max={(foodListLoaded) ? getFoodNameList(foodList).length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
 			</div>
 			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
             <WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserUpdate={handleUserUpdate} toggleWheel={toggleWheel}/>
