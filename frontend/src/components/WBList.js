@@ -20,6 +20,25 @@ function WBList(props) {
 		}
 	}, [props.userState.userLoaded])
 
+	useEffect(() => {
+		if(!user) return
+		if(user.favorite.length <= 3){
+			console.log(user.favorite)
+			user.favorite.forEach(food => {props.toggleWheel(food, "on")})
+		}else{
+			user.favorite.forEach(food => {props.toggleWheel(food, "off")})
+			const selected = []
+			let cnt = 0
+			while(selected.length < 3 && cnt < 100){
+				const rndSelect = user.favorite[Math.floor(Math.random() * user.favorite.length)]
+				console.log(rndSelect)
+				if(!selected.includes(rndSelect)) selected.push(rndSelect)
+				cnt += 1
+			}
+			selected.forEach(food => {props.toggleWheel(food, "on")})
+		}
+	}, [user])
+
 	const addToList = (listName, restaurantID) => {
 		if (listName === 'favorite') {
 			if (user.blacklist.includes(restaurantID)) {

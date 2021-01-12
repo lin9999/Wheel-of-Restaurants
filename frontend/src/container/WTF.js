@@ -42,12 +42,18 @@ function WTF() {
         setSelected(selectedItem)
     }
 
-    const toggleWheel = (_id) => {
+    const toggleWheel = (_id, option) => {
         const newFoodList = foodList.slice()
         const food = newFoodList.find((food) => food._id == _id)
         console.log(food)
         if(food){
-            food.addedToWheel = !food.addedToWheel
+            if(option === "on"){
+                food.addedToWheel = true
+            } else if (option === "off"){
+                food.addedToWheel = false
+            } else {
+                food.addedToWheel = !food.addedToWheel
+            }
         }
         setFoodList(newFoodList)
         setListNum(foodList.filter((food) => food.addedToWheel).length)
