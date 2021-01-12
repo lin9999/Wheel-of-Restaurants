@@ -2,17 +2,13 @@ import { Input } from 'antd';
 import React from 'react'
 
 
-function SearchBar() {
+function SearchBar(props) {
 
 	const { Search } = Input;
-	const onSearch = (value) => {
-		console.log(value);
-		
-	}
 
 	return (
 		<React.Fragment>
-			<Search placeholder="Find Food..." onSearch={onSearch}  allowClear enterButton />
+			<Search placeholder="Find Food..." value={props.searchWord} onChange={(e) => {props.setSearchWord(e.target.value)}}  allowClear enterButton />
 		</React.Fragment>
 	)
 }
