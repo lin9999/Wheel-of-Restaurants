@@ -100,9 +100,13 @@ function WBList(props) {
 										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
-									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}}>Wheel</Button>
-									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}} disabled={user.favorite.includes(item._id)}>Favorite</Button>
-									<Button size="small" shape="round" type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"gray"}} disabled={user.blacklist.includes(item._id)}>BlackList</Button>								
+									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} 
+											style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}}>Wheel</Button>
+									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}} 
+											disabled={user.favorite.includes(item._id)}>Favorite</Button>
+									<Button size="small" shape="round" type="primary" onClick={(e) => {addToList('blacklist', item._id)}} 
+											style={ (user.blacklist.includes(item._id))? {"background":"white"}:{"background":"gray"}} 
+											disabled={user.blacklist.includes(item._id)}>BlackList</Button>								
 								</List.Item>
 							)}
 						/>
