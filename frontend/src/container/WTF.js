@@ -104,14 +104,14 @@ function WTF() {
         }
     }
 
-    window.onbeforeunload = confirmExit;
-    function confirmExit() {
-        displayStatus({
-            type: 'error', 
-            msg: 'asldfja;sjdfl;ajs...'
-        })
-        return "123";
-    }
+    // window.onbeforeunload = confirmExit;
+    // function confirmExit() {
+    //     displayStatus({
+    //         type: 'error', 
+    //         msg: 'asldfja;sjdfl;ajs...'
+    //     })
+    //     return "123";
+    // }
 
     return (
         <React.Fragment>
@@ -126,7 +126,14 @@ function WTF() {
                 <InputNumber min={0} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
             </div>
             <Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
-            <WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserWBListUpdate={handleUserWBListUpdate} toggleWheel={toggleWheel}/>
+            <WBList classname="WBList" 
+                    foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} 
+                    userState={{user: user, userLoaded: userLoaded}} 
+                    handleUserWBListUpdate={handleUserWBListUpdate} 
+                    toggleWheel={toggleWheel}
+                    setShowMap={setShowMap}
+                    setSelected={setSelected}
+            />
             {
                 (showMap && selected) ? (
                     <div id="map">

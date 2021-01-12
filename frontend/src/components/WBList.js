@@ -97,7 +97,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
+										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}}>Wheel</Button>
@@ -120,7 +120,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
+										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
@@ -142,7 +142,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
+										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
