@@ -1,6 +1,5 @@
 import Restaurant from '../models/restaurant'
 import Account from "../models/account.js"
-import RND2UID from "../models/RND2UID.js"
 
 async function addNewRestaurant(req, res) {
 	const newRestaurant = req.body
@@ -21,9 +20,6 @@ async function addNewRestaurant(req, res) {
 async function ClearUsers(req, res) {
 	Account.remove({}, function(err) { 
 	   console.log('[Warning]: \"Account\" collection removed') 
-	});
-	RND2UID.remove({}, function(err) { 
-	   console.log('[Warning]: \"RND2UID\" collection removed') 
 	});
 }
 

@@ -11,8 +11,8 @@ function Login() {
 	const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
-	const getUserInfo = async (RND) => {
-		const ret = await instance.get('/getInfo?RND=' + RND)
+	const getUserInfo = async (UID) => {
+		const ret = await instance.get('/getInfo?UID=' + UID)
 		if (ret.data.message === "Success") {
 			return ret.data.userInfo
 		} else {
@@ -32,9 +32,8 @@ function Login() {
 	        		msg: 'Welcome!'
 	        	})
 
-	        	const info = await getUserInfo(ret.data.RND)
-	        	console.log(info)
-	        	sessionStorage.setItem('user', JSON.stringify(info))
+	        	const info = await getUserInfo(ret.data.UID)
+	        	sessionStorage.setItem('user', JSON.stringify({UID: ret.data.UID, ...info}))
 	        	history.push({
 	    			pathname: "/WTF"
 	    		})

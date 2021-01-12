@@ -55,6 +55,7 @@ function WTF() {
         const loggedInUser = sessionStorage.getItem('user');
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
+            console.log(foundUser)
             setUser(foundUser);
         } else { // redirect to login page
             alert("Please log in first!")
@@ -83,8 +84,11 @@ function WTF() {
             setTimeout(() => { setShowMap(true) }, 4000);
     }, [selected])
 
-    const handleUserWBListUpdate = (updatedUser) => {
+    const handleUserWBListUpdate = async (updatedUser) => {
         setUser(updatedUser)
+        const ret = await instance.post('/UpdateWBList', { UID: updatedUser.UID, favorite: updatedUser.favorite, blacklist: updatedUser.blacklist })
+        console.log(ret)
+        sessionStorage.setItem('user', JSON.stringify(updatedUser))
     }
 
     window.onbeforeunload = confirmExit;

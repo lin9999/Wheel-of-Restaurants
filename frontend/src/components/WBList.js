@@ -16,6 +16,7 @@ function WBList(props) {
 
 	useEffect(() => {
 		if (props.userState.userLoaded) {
+			// console.log(props.userState.user)
 			setUser(props.userState.user)
 		}
 	}, [props.userState.userLoaded])
@@ -28,7 +29,9 @@ function WBList(props) {
 	        		msg: 'I thought you hate it...'
 	        	})
 			} else if (!user.favorite.includes(restaurantID)) {
-				setUser({...user, favorite: [restaurantID, ...user.favorite]})
+				const updatedUser = {...user, favorite: [restaurantID, ...user.favorite]}
+				setUser(updatedUser)
+				props.handleUserWBListUpdate(updatedUser)
 			}
 		} else if (listName === 'blacklist') {
 			if (user.favorite.includes(restaurantID)) {
@@ -37,25 +40,29 @@ function WBList(props) {
 	        		msg: 'I thought it is your favorite...'
 	        	})
 			} else if (!user.blacklist.includes(restaurantID)) {
-				setUser({...user, blacklist: [restaurantID, ...user.blacklist]})
+				const updatedUser = {...user, blacklist: [restaurantID, ...user.blacklist]}
+				setUser(updatedUser)
+				props.handleUserWBListUpdate(updatedUser)
 			}
 		}
 	}
 	const removeFromList = (listName, restaurantID) => {
 		if (listName === 'favorite') {
-			if (user.favorite.includes(restaurantID))
-				setUser({...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID !== restaurantID})})
+			if (user.favorite.includes(restaurantID)) {
+				const updatedUser = {...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID !== restaurantID})}
+				setUser(updatedUser)
+				props.handleUserWBListUpdate(updatedUser)
+			}
 		} else if (listName === 'blacklist') {
-			if (user.blacklist.includes(restaurantID))
-				setUser({...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID !== restaurantID})})
+			if (user.blacklist.includes(restaurantID)) {
+				const updatedUser = {...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID !== restaurantID})}
+				setUser(updatedUser)
+				props.handleUserWBListUpdate(updatedUser)
+			}
+
 		}
 	}
 
-	useEffect(() => {
-		if (props.userState.userLoaded) {
-			props.handleUserWBListUpdate(user)
-		}
-	}, [user])
 
 	return(
 		<React.Fragment>
