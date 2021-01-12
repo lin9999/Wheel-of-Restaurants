@@ -7,6 +7,7 @@ function WBList(props) {
 	const { TabPane } = Tabs;
 	const [foodList, setFoodList] = useState([])
 	const [user, setUser] = useState(null)
+	const [searchWord, setSearchWord] = useState("")
 
 	useEffect(() => {
 		if (props.foodListState.foodListLoaded) {
@@ -64,12 +65,14 @@ function WBList(props) {
 
 	return(
 		<React.Fragment>
-			<Tabs type="card" className="Tabs" defaultActiveKey="1" >
-				<TabPane className="TabPane" tab="All" key="1">
-					<SearchBar className="SearchBar"/>
+			<Tabs type="card" className="Tabs" defaultActiveKey="1" onTabClick={() => {setSearchWord("")}}>
+				<TabPane className="TabPane" tab="All" key="1" >
+					<SearchBar className="SearchBar" searchWord={searchWord} setSearchWord={setSearchWord}/>
 					<nav>
 						<List
-							dataSource={props.foodListState.foodListLoaded ? foodList : []}
+							dataSource={(props.foodListState.foodListLoaded) ? 
+								foodList.filter((restaurant) => (restaurant.restaurantName.includes(searchWord))) : 
+								[]}
 							size="small"
 							renderItem={item => (
 								<List.Item key={item._id}>
@@ -86,11 +89,11 @@ function WBList(props) {
 					</nav>
 				</TabPane>
 				<TabPane className="TabPane" tab="My Favorite" key="2">
-					<SearchBar className="SearchBar"/>
+					<SearchBar className="SearchBar" searchWord={searchWord} setSearchWord={setSearchWord}/>
 					<nav>
 						<List
 							dataSource={(props.foodListState.foodListLoaded && props.userState.userLoaded) ? 
-								foodList.filter((restaurant)=>{ return user.favorite.includes(restaurant._id) }) :
+								foodList.filter((restaurant) => user.favorite.includes(restaurant._id) && restaurant.restaurantName.includes(searchWord)) :
 								[]
 							}
 							size="small"
@@ -108,11 +111,11 @@ function WBList(props) {
 					</nav>
 				</TabPane>
 				<TabPane className="TabPane" tab="My Black List" key="3">
-					<SearchBar className="SearchBar"/>
+					<SearchBar className="SearchBar" searchWord={searchWord} setSearchWord={setSearchWord}/>
 					<nav>
 						<List
 							dataSource={(props.foodListState.foodListLoaded && props.userState.userLoaded) ? 
-								foodList.filter((restaurant)=>{ return user.blacklist.includes(restaurant._id) }) :
+								foodList.filter((restaurant)=> (user.blacklist.includes(restaurant._id) && restaurant.restaurantName.includes(searchWord) )) :
 								[]
 							}
 							size="small"
