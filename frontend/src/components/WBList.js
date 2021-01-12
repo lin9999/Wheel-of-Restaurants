@@ -2,7 +2,7 @@ import './WBList.css'
 import React, { useState, useEffect} from 'react'
 import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
-import { instance, displayStatus } from './Util'
+import { displayStatus } from './Util'
 function WBList(props) {
 	const { TabPane } = Tabs;
 	const [foodList, setFoodList] = useState([])
@@ -44,16 +44,16 @@ function WBList(props) {
 	const removeFromList = (listName, restaurantID) => {
 		if (listName === 'favorite') {
 			if (user.favorite.includes(restaurantID))
-				setUser({...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID != restaurantID})})
+				setUser({...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID !== restaurantID})})
 		} else if (listName === 'blacklist') {
 			if (user.blacklist.includes(restaurantID))
-				setUser({...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID != restaurantID})})
+				setUser({...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID !== restaurantID})})
 		}
 	}
 
 	useEffect(() => {
 		if (props.userState.userLoaded) {
-			props.handleUserUpdate(user)
+			props.handleUserWBListUpdate(user)
 		}
 	}, [user])
 
@@ -69,7 +69,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.restaurantName}</a>}
+										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={{"background":"#994aff82"}}>Wheel</Button>
@@ -92,7 +92,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.restaurantName}</a>}
+										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
@@ -114,7 +114,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={<a href="">{item.restaurantName}</a>}
+										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>

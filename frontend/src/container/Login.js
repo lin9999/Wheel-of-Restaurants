@@ -13,7 +13,14 @@ function Login() {
 
 	const getUserInfo = async (RND) => {
 		const ret = await instance.get('/getInfo?RND=' + RND)
-		return ret.data
+		if (ret.data.message === "Success") {
+			return ret.data.userInfo
+		} else {
+			displayStatus({
+				type: 'error',
+				msg: 'getUserInfo error!'
+			})
+		}
 	}
 
     const login = async () => {
@@ -44,7 +51,6 @@ function Login() {
     	if (userName && password) {
 	        const ret = await instance.post('/signup', { userName: userName, password: password })
 	        if (ret.data.message === "Success") {
-		        console.log(ret.data.message)
 		        login()
 	        } else {
 	        	displayStatus({

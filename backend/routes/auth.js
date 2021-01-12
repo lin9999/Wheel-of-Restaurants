@@ -43,7 +43,6 @@ async function Authenticate(req, res) {
 async function SignUp(req, res) {
 	const newAccount = req.body
 	newAccount.password = await bcrypt.hash(newAccount.password, 10)
-	console.log(newAccount)
 	Account.create(newAccount, function(err, account, next) {
 		if (err) {
 			if (err.name === 'MongoError' && err.code === 11000)
