@@ -44,7 +44,7 @@ function WTF() {
     const toggleWheel = (_id, option) => {
         if(!foodList) return
         const newFoodList = foodList.slice()
-        const food = newFoodList.find((food) => food._id == _id)
+        const food = newFoodList.find((food) => food._id === _id)
         console.log(food)
         if(food){
             if(option === "on"){
