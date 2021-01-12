@@ -5,19 +5,18 @@ import { instance, displayStatus } from '../components/Util'
 import { useHistory } from 'react-router-dom'
 
 import Wheel from "../components/Wheel"
-import WBList from '..//components/WBList'
+import WBList from '../components/WBList'
 
-const getFoodList = async (setFoodList, setListNum) => {
+const getFoodList = async (setFoodList) => {
     const ret = await instance.get('/getRestaurantList')
     const foodList = ret.data
     foodList.forEach((food) => {food.addedToWheel = false})
     setFoodList(foodList)   
-    setListNum(0)
 }
 
 const getFoodNameList = (foodList) => {
-	if (foodList.length === 0) 
-		return []
+    if (foodList.length === 0) 
+        return []
     return foodList.map(({ _id, restaurantName, ...rest }) => ({_id, restaurantName}))
 }
 
@@ -45,7 +44,6 @@ function WTF() {
     const toggleWheel = (_id) => {
         const newFoodList = foodList.slice()
         const food = newFoodList.find((food) => food._id === _id)
-        console.log(food)
         if (food) {
             food.addedToWheel = !food.addedToWheel
         }
@@ -64,7 +62,7 @@ function WTF() {
                 pathname: "/"
             })
         }
-        getFoodList(setFoodList, setListNum)
+        getFoodList(setFoodList)
     }, [])
 
     useEffect(() => {
@@ -81,14 +79,10 @@ function WTF() {
     }, [foodList])
 
     useEffect(() => {
-        console.log(selected)
         if (!showMap)
             setTimeout(() => { setShowMap(true) }, 4000);
     }, [selected])
 
-    useEffect(() => {
-        console.log("AAA")
-    }, [showMap])
     const handleUserWBListUpdate = (updatedUser) => {
         setUser(updatedUser)
     }
@@ -104,22 +98,22 @@ function WTF() {
 
     return (
         <React.Fragment>
-			<h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
+            <h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
             <div className="Wheel">
-				{ 
+                { 
                     (foodListLoaded) ? <Wheel  items={getFoodNameList(foodList.filter((food) => food.addedToWheel)).slice(0, listNum)} onSelect={onSelect} setShowMap={setShowMap}/> : <div></div>
-				}
-			</div>
+                }
+            </div>
             <div className="Choices">
-				<h3>Choices: </h3>
+                <h3>Choices: </h3>
                 <InputNumber min={0} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
-			</div>
-			<Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
+            </div>
+            <Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
             <WBList classname="WBList" foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} userState={{user: user, userLoaded: userLoaded}} handleUserWBListUpdate={handleUserWBListUpdate} toggleWheel={toggleWheel}/>
-			{
-                showMap ? (
+            {
+                (showMap && selected) ? (
                     <div id="map">
-                        <iframe src={(foodList) ? foodList[selected].mapurl : ""}
+                        <iframe src={(foodList) ? foodList.find((food) => food._id === selected).mapurl : ""}
                             width="450" 
                             height="600"
                             frameBorder="10">
@@ -129,7 +123,7 @@ function WTF() {
                     <React.Fragment></React.Fragment>
                 )
             }
-		</React.Fragment>
+        </React.Fragment>
     );
 };
 
