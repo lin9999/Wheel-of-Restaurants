@@ -12,12 +12,13 @@ export default class Wheel extends React.Component {
     }
 
     selectItem() {
-        const {items, onSelect} = this.props
+        const { items, onSelect } = this.props
+        this.props.setShowMap(false)
         if (this.state.selectedItem === null) {
-            const selectedItem = Math.floor(Math.random() * this.props.items.length);
+            const selectedItem = Math.floor(Math.random() * items.length);
             const selectedID = this.props.items[selectedItem]._id 
             this.setState({ selectedItem });
-            onSelect(this.props.items[selectedItem]._id)
+            onSelect(selectedID)
         } else {
             this.setState({ selectedItem: null });
             onSelect(0)
