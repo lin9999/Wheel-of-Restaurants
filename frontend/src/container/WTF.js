@@ -55,7 +55,6 @@ function WTF() {
         const loggedInUser = sessionStorage.getItem('user');
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
-            console.log(foundUser)
             setUser(foundUser);
         } else { // redirect to login page
             alert("Please log in first!")
@@ -87,8 +86,14 @@ function WTF() {
     const handleUserWBListUpdate = async (updatedUser) => {
         setUser(updatedUser)
         const ret = await instance.post('/UpdateWBList', { UID: updatedUser.UID, favorite: updatedUser.favorite, blacklist: updatedUser.blacklist })
-        console.log(ret)
-        sessionStorage.setItem('user', JSON.stringify(updatedUser))
+        if (ret.data.message === "Success") {
+            sessionStorage.setItem('user', JSON.stringify(updatedUser))
+        } else {
+            displayStatus({
+                type: 'error', 
+                msg: 'failed to update WBList ...'
+            })
+        }
     }
 
     window.onbeforeunload = confirmExit;

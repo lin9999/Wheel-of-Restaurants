@@ -16,7 +16,6 @@ function WBList(props) {
 
 	useEffect(() => {
 		if (props.userState.userLoaded) {
-			// console.log(props.userState.user)
 			setUser(props.userState.user)
 		}
 	}, [props.userState.userLoaded])
@@ -59,7 +58,6 @@ function WBList(props) {
 				setUser(updatedUser)
 				props.handleUserWBListUpdate(updatedUser)
 			}
-
 		}
 	}
 
@@ -80,8 +78,8 @@ function WBList(props) {
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={(item.addedToWheel)? {"background":"#da3768"}:{"background":"#994aff82"}}>Wheel</Button>
-									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}}>Favorite</Button>
-									<Button size="small" shape="round" type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"black"}}>BlackList</Button>								
+									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}} disabled={user.favorite.includes(item._id)}>Favorite</Button>
+									<Button size="small" shape="round" type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"black"}} disabled={user.blacklist.includes(item._id)}>BlackList</Button>								
 								</List.Item>
 							)}
 						/>
