@@ -79,9 +79,9 @@ function WBList(props) {
 										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
-									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={(item.addedToWheel)? {"background":"#da3768"}:{"background":"#994aff82"}}>Wheel</Button>
+									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {addToList('favorite', item._id)}}>Favorite</Button>
-									<Button size="small" shape="round" type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"black"}}>BlackList</Button>								
+									<Button size="small" shape="round"  type="primary" onClick={() => {addToList('blacklist', item._id)}} style={{"background":"grey"}}>BlackList</Button>								
 								</List.Item>
 							)}
 						/>
@@ -102,7 +102,7 @@ function WBList(props) {
 										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
-                                    <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#da3768"}:{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
+                                    <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('favorite', item._id)}} style={{"background":"red"}}>Remove</Button>
 								</List.Item>
 							)}
@@ -124,7 +124,7 @@ function WBList(props) {
 										title={<a href={item.googleurl} target="_blank" rel="noreferrer noopener"> {item.restaurantName} </a>}
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
-                                    <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#da3768"}:{"background":"#994aff82"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
+                                    <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('blacklist', item._id)}} style={{"background":"red"}}>Remove</Button>								
 								</List.Item>
 							)}

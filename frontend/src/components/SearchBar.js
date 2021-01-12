@@ -5,7 +5,9 @@ import React from 'react'
 function SearchBar() {
 
 	const { Search } = Input;
-	const onSearch = value => console.log(value);
+	const onSearch = (value) => {
+		console.log(value);
+	}
 
 	return (
 		<React.Fragment>
