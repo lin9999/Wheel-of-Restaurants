@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cd frontend && yarn start",
+    "start": "cd backend && node server.js",
     "server": "cd backend && yarn server"
   }
 }
