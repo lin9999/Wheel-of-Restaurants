@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+  	"install": "cd backend && npm install && cd ..",
     "start": "cd backend && npm run start"
   }
 }
