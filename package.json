@@ -8,6 +8,9 @@
   
   "scripts": {
     "start": "babel-node backend/server.js",
-    "server": "cd backend && yarn server"
+    "server": "cd backend && yarn server",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel"
   }
 }
