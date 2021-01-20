@@ -16,7 +16,7 @@ function App() {
         <React.StrictMode>
 			<Background/>
             <BrowserRouter>
-				<Route path="/" component={Login} />
+				<Route exact path="/" component={Login} />
 				<Route path="/WTF" component={WTF} /> 
 				<Route path="/Development/Development" component={Development}></Route>
             </BrowserRouter>
