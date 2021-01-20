@@ -36,7 +36,7 @@ function Login() {
 	        	sessionStorage.setItem('user', JSON.stringify({UID: ret.data.UID, ...info}))
 	        	console.log(history.location)
 	        	history.push({
-	    			pathname: history.location + "/WTF"
+	    			pathname: "/WTF"
 	    		})
 	        } else {
 	        	displayStatus({
