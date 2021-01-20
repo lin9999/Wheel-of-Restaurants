@@ -34,6 +34,7 @@ function Login() {
 
 	        	const info = await getUserInfo(ret.data.UID)
 	        	sessionStorage.setItem('user', JSON.stringify({UID: ret.data.UID, ...info}))
+	        	console.log(history.location)
 	        	history.push({
 	    			pathname: history.location + "/WTF"
 	    		})
