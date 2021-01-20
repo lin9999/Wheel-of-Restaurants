@@ -35,7 +35,7 @@ function Login() {
 	        	const info = await getUserInfo(ret.data.UID)
 	        	sessionStorage.setItem('user', JSON.stringify({UID: ret.data.UID, ...info}))
 	        	history.push({
-	    			pathname: window.location.pathname + "/WTF"
+	    			pathname: window.location.pathname + "WTF/"
 	    		})
 	        } else {
 	        	displayStatus({
