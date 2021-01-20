@@ -15,7 +15,7 @@ function App() {
     return (
         <React.StrictMode>
 			<Background/>
-            <BrowserRouter basename="https://lin9999.github.io/Wheel-of-Restaurants/">
+            <BrowserRouter basename="/Wheel-of-Restaurants">
 				<Route exact path="/" component={Login} />
 				<Route exact path="/WTF" component={WTF} /> 
 				<Route exact path="/Development/Development" component={Development}></Route>
