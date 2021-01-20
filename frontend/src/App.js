@@ -17,8 +17,8 @@ function App() {
 			<Background/>
             <BrowserRouter>
 				<Route path="/" component={Login} />
-				<Route path="WTF/" component={WTF} /> 
-				<Route path="Development/Development" component={Development}></Route>
+				<Route path="/WTF" component={WTF} /> 
+				<Route path="/Development/Development" component={Development}></Route>
             </BrowserRouter>
 			<h3 className="footer"> 
 				<PieChartOutlined/> <br/> <CopyrightOutlined /> 2020 by WTF <br/> Proudly created with <HeartFilled />
