@@ -4,42 +4,41 @@ import { Tabs, List, Button } from 'antd'
 import SearchBar from './SearchBar' 
 import { displayStatus } from './Util'
 function WBList(props) {
+	const { foodListState, userState, toggleWheel } = props
 	const { TabPane } = Tabs;
 	const [foodList, setFoodList] = useState([])
 	const [user, setUser] = useState(null)
 	const [searchWord, setSearchWord] = useState("")
 
 	useEffect(() => {
-		if (props.foodListState.foodListLoaded) {
-			setFoodList(props.foodListState.foodList)
+		if (foodListState.foodListLoaded) {
+			setFoodList(foodListState.foodList)
 		}
-	}, [props.foodListState.foodListLoaded])
+	}, [foodListState.foodListLoaded])
 
 	useEffect(() => {
-		if (props.userState.userLoaded) {
-			setUser(props.userState.user)
+		if (userState.userLoaded) {
+			setUser(userState.user)
 		}
-	}, [props.userState.userLoaded])
+	}, [userState.userLoaded])
 
 	useEffect(() => {
-		console.log('test')
-		console.log(user)
 		if(!user) return
 		if(user.favorite.length <= 3){
 			//console.log(user.favorite)
-			user.favorite.forEach(food => {props.toggleWheel(food, "on")})
+			user.favorite.forEach(food => {toggleWheel(food, "on")})
 		}else{
-			user.favorite.forEach(food => {props.toggleWheel(food, "off")})
+			user.favorite.forEach(food => {toggleWheel(food, "off")})
 			const selected = []
 			while(selected.length < 3){
 				const rndSelect = user.favorite[Math.floor(Math.random() * user.favorite.length)]
 				if(!selected.includes(rndSelect)) selected.push(rndSelect)
 				//console.log(`selected = ${selected}`)
 			}
-			console.log(`selected = ${selected}`)
-			selected.forEach(food => {props.toggleWheel(food, "on")})
+			// console.log(`selected = ${selected}`)
+			selected.forEach(food => {toggleWheel(food, "on")})
 		}
-	}, [user, props.foodListState.foodListLoaded])
+	}, [user, foodListState.foodListLoaded])
 
 	const addToList = (listName, restaurantID) => {
 		if (listName === 'favorite') {
@@ -97,7 +96,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} 
@@ -124,7 +123,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
@@ -146,7 +145,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <a href="javascript:void(0);" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</a> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelected(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>

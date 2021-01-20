@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { message } from 'antd'
 
-const API_ROOT = 'http://localhost:4000/api'
+// const API_ROOT = 'http://localhost:4000/api'
+const API_ROOT = 'https://wheel-to-food.herokuapp.com/api'
 const instance = axios.create({
     baseURL: API_ROOT
 })

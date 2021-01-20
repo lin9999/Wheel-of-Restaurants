@@ -60,10 +60,6 @@ function Login() {
     	}
     }
 
-	const onFinish = (values) => {
-		console.log('Received values of form: ', values)
-	}
-
 	return(
 		<div className="formwrapper">
 			<Form
@@ -72,7 +68,6 @@ function Login() {
 				initialValues={{
 					remember: true,
 				}}
-				onFinish={onFinish}
 				onFinishFailed={()=>{ 
 					displayStatus({
 		                type: 'error',

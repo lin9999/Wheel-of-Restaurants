@@ -25,10 +25,10 @@
 }
 
 nav ul{
-    height:280px; 
-    width:435px;
-    overflow:hidden;
-    overflow-y:scroll;
+    height: 280px; 
+    width: 435px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .ant-list-item-meta-title{
@@ -41,5 +41,20 @@ nav ul{
 
 .Checkbox {
     position: relative;
-    left:0px;
+    left: 0px;
+}
+
+.link-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+    text-decoration: none;
 }

@@ -13,7 +13,7 @@ import vincent861223 from './imgs/vincent861223.png'
 
 function App() {
     return (
-        <React.Fragment>
+        <React.StrictMode>
 			<Background/>
             <BrowserRouter>
 				<Route exact path="/" component={Login} />
@@ -44,7 +44,7 @@ function App() {
 					<img src = {vincent861223} alt = "vincent861223" style={{"borderRadius":"50%"}}/> 
 				</Button>
 			</h3>
-		</React.Fragment>
+		</React.StrictMode>
     );
 }
 

@@ -138,6 +138,7 @@ function WTF() {
                 (showMap && selected) ? (
                     <div id="map">
                         <iframe src={(foodList) ? foodList.find((food) => food._id === selected).mapurl : ""}
+                            title="map"
                             width="450" 
                             height="600"
                             frameBorder="10">
