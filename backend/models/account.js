@@ -6,7 +6,8 @@ const AccountSchema = Schema({
 		userName: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		blacklist: [{ type: String }],
-		favorite: [{ type: String }]
+		favorite: [{ type: String }],
+		identity: { type: String, required: true}
 	}, {
 		_id: true,
 		collection: 'Account',
