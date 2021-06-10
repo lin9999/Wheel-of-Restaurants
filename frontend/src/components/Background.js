@@ -2,7 +2,7 @@ import React from 'react'
 import './Background.css'
 import cookie from '../imgs/cookie.png'
 
-function Background(){
+function Background() {
 	return(
 	<React.Fragment>
 		<div className="TitleBlock">

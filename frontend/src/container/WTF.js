@@ -1,7 +1,7 @@
 import './WTF.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
-import { instance, displayStatus } from '../components/Util'
+import { instance, displayStatus, geolocationSuccess, geolocationError } from '../components/Util'
 import { useHistory } from 'react-router-dom'
 
 import Wheel from "../components/Wheel"
@@ -27,7 +27,7 @@ function WTF() {
     const [foodList, setFoodList] = useState(null)
     const [foodListLoaded, setFoodListLoaded] = useState(false)
     const [listNum, setListNum] = useState(0)
-    const [selected, setSelected] = useState(0)
+    const [selectedRestaurant, setSelectedRestaurant] = useState(0)
     const [showMap, setShowMap] = useState(false)
 
     const logout = () => {
@@ -37,19 +37,18 @@ function WTF() {
         })
     }
 
-    const onSelect = (selectedItem) => {
-        setSelected(selectedItem)
+    const onSelect = (selectedRestaurantItem) => {
+        setSelectedRestaurant(selectedRestaurantItem)
     }
 
     const toggleWheel = (_id, option) => {
-        if(!foodList) return
+        if (!foodList) return
         const newFoodList = foodList.slice()
         const food = newFoodList.find((food) => food._id === _id)
-        console.log(food)
-        if(food){
-            if(option === "on"){
+        if (food) {
+            if(option === "on") {
                 food.addedToWheel = true
-            } else if (option === "off"){
+            } else if (option === "off") {
                 food.addedToWheel = false
             } else {
                 food.addedToWheel = !food.addedToWheel
@@ -71,6 +70,7 @@ function WTF() {
             })
         }
         getFoodList(setFoodList)
+        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
     }, [])
 
     useEffect(() => {
@@ -89,7 +89,7 @@ function WTF() {
     useEffect(() => {
         if (!showMap)
             setTimeout(() => { setShowMap(true) }, 4000);
-    }, [selected])
+    }, [selectedRestaurant])
 
     const handleUserWBListUpdate = async (updatedUser) => {
         setUser(updatedUser)
@@ -103,15 +103,6 @@ function WTF() {
             })
         }
     }
-
-    // window.onbeforeunload = confirmExit;
-    // function confirmExit() {
-    //     displayStatus({
-    //         type: 'error', 
-    //         msg: 'asldfja;sjdfl;ajs...'
-    //     })
-    //     return "123";
-    // }
 
     return (
         <React.Fragment>
@@ -132,12 +123,12 @@ function WTF() {
                     handleUserWBListUpdate={handleUserWBListUpdate} 
                     toggleWheel={toggleWheel}
                     setShowMap={setShowMap}
-                    setSelected={setSelected}
+                    setSelectedRestaurant={setSelectedRestaurant}
             />
             {
-                (showMap && selected) ? (
+                (showMap && selectedRestaurant) ? (
                     <div id="map">
-                        <iframe src={(foodList) ? foodList.find((food) => food._id === selected).mapurl : ""}
+                        <iframe src={(foodList) ? foodList.find((food) => food._id === selectedRestaurant).mapurl : ""}
                             title="map"
                             width="450" 
                             height="600"

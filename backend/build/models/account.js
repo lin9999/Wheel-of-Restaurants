@@ -20,12 +20,19 @@ const AccountSchema = Schema({
     type: String,
     required: true
   },
+  favorite: [{
+    type: String
+  }],
   blacklist: [{
     type: String
   }],
-  favorite: [{
+  recentVisit: [{
     type: String
-  }]
+  }],
+  identity: {
+    type: String,
+    required: true
+  }
 }, {
   _id: true,
   collection: 'Account',

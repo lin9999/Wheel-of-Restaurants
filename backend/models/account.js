@@ -7,8 +7,7 @@ const AccountSchema = Schema({
 		password: { type: String, required: true },
 		favorite: [{ type: String }],
 		blacklist: [{ type: String }],
-		recentVist: [{ type: String }],
-		identity: { type: String, required: true} 
+		recentVisit: [{ type: String }],
 	}, {
 		_id: true,
 		collection: 'Account',
