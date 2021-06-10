@@ -34,6 +34,10 @@ function Development() {
 			priceTag: priceTag
 		})
 		console.log(ret)
+		displayStatus({
+    		type: 'success', 
+    		msg: 'Success!'
+    	})
 	} 
 
 	const clearUsers = async () => {
