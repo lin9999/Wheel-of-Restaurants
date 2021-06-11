@@ -28,7 +28,7 @@ async function SignUp(req, res) {
 	newAccount.password = await bcrypt.hash(newAccount.password, 10)
 	Account.create(newAccount, function(err, account, next) {
 		if (err) {
-			console.log(err)
+			// console.log(err)
 			if (err.name === 'MongoError' && err.code === 11000) {
 				console.log("[Error]: User name existed!")
 				res.status(200).send({ message: "User name existed!" })

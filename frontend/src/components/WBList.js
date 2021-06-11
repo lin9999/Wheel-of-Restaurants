@@ -9,6 +9,7 @@ function WBList(props) {
 	const [foodList, setFoodList] = useState([])
 	const [user, setUser] = useState(null)
 	const [searchWord, setSearchWord] = useState("")
+	const [historyList, setHistoryList] = useState([])
 
 	useEffect(() => {
 		if (foodListState.foodListLoaded) {
@@ -20,7 +21,7 @@ function WBList(props) {
 		if (userState.userLoaded) {
 			setUser(userState.user)
 		}
-	}, [userState.userLoaded])
+	}, [userState])
 
 	useEffect(() => {  // set default wheel
 		if(!user) return
@@ -47,7 +48,6 @@ function WBList(props) {
 	        	})
 			} else if (!user.favorite.includes(restaurantID)) {
 				const updatedUser = {...user, favorite: [restaurantID, ...user.favorite]}
-				setUser(updatedUser)
 				props.handleUserWBListUpdate(updatedUser)
 			}
 		} else if (listName === 'blacklist') {
@@ -58,7 +58,6 @@ function WBList(props) {
 	        	})
 			} else if (!user.blacklist.includes(restaurantID)) {
 				const updatedUser = {...user, blacklist: [restaurantID, ...user.blacklist]}
-				setUser(updatedUser)
 				props.handleUserWBListUpdate(updatedUser)
 			}
 		}
@@ -68,13 +67,11 @@ function WBList(props) {
 		if (listName === 'favorite') {
 			if (user.favorite.includes(restaurantID)) {
 				const updatedUser = {...user, favorite: user.favorite.filter((favoriteID) => { return favoriteID !== restaurantID})}
-				setUser(updatedUser)
 				props.handleUserWBListUpdate(updatedUser)
 			}
 		} else if (listName === 'blacklist') {
 			if (user.blacklist.includes(restaurantID)) {
 				const updatedUser = {...user, blacklist: user.blacklist.filter((blacklistID) => { return blacklistID !== restaurantID})}
-				setUser(updatedUser)
 				props.handleUserWBListUpdate(updatedUser)
 			}
 		}
@@ -149,6 +146,27 @@ function WBList(props) {
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 									<Button size="small" shape="round" type="primary" onClick={() => {removeFromList('blacklist', item._id)}} style={{"background":"red"}}>Remove</Button>								
+								</List.Item>
+							)}
+						/>
+					</nav>
+				</TabPane>
+				<TabPane className="TabPane" tab="History" key="4" >
+					<SearchBar className="SearchBar" searchWord={searchWord} setSearchWord={setSearchWord}/>
+					<nav>
+						<List
+							dataSource={(props.foodListState.foodListLoaded && props.userState.userLoaded) ? 
+								user.recentVisit.map(recentID => foodList.find(restaurant => restaurant._id === recentID)) :
+								[]
+							}
+							size="small"
+							renderItem={item => (
+								<List.Item key={item._id}>
+									<List.Item.Meta
+										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
+										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
+									/>
+                                    <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
 								</List.Item>
 							)}
 						/>

@@ -1,42 +1,27 @@
-.Choices
+h1#greetings
 {
     position: relative;
-    top: 10px;
-    left: 620px;
-
-    width: 200px;
+    top: 0;
+    left: 510px;
+    width: 440px;
 }
+
 
 #map
 {
     position: relative;
-    top: -580px;
+    top: -520px;
     left: 960px;
-    display:  block;
+
+    display: block;
     width: 450px;
     height: 600px;
 }
 
-.LOGOUT
-{
-    position: relative;
-    top: -630px;
-    left: 1350px;
 
-    display: block;
-}
 
 div.Wheel {
     position: relative;
     width: 300px;
     left: 510px;
-}
-
-h1#Title
-{
-    position: relative;
-    top: 0;
-    left: 530px;
-
-    width: 400px;
 }

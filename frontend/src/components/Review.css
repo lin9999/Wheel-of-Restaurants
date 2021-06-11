@@ -1,0 +1,23 @@
+#review 
+{
+    position: relative;
+    top: -600px;
+    left: 510px;
+    width: 440px;
+}
+
+.ReviewYes 
+{
+    position: relative;
+    left: -10px;
+
+    width: 60px;
+}
+
+.ReviewNo
+{
+    position: relative;
+    left: 10px;
+
+    width: 60px;
+}

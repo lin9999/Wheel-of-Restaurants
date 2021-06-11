@@ -12,8 +12,8 @@ async function GetUserInfo(req, res) {
 				res.status(200).send({ message: "Something went wrong... "})
 			} else {
 				res.status(200).send({ message: "Success", 
-									   userInfo: (({userName, favorite, blacklist})=>
-									  			 ({userName, favorite, blacklist}))(account)})
+									   userInfo: (({userName, favorite, blacklist, recentVisit})=>
+									  			 ({userName, favorite, blacklist, recentVisit}))(account)})
 				console.log("User Info sent")
 			}
 		})
@@ -23,7 +23,7 @@ async function UpdateWBList(req, res) {
 	const UID = req.body.UID
 	Account
 		.update({ _id: UID },
-				{ favorite: req.body.favorite, blacklist: req.body.blacklist},
+				{ favorite: req.body.favorite, blacklist: req.body.blacklist },
 				function(err, log) {
 					if (err) {
 						console.log(err)
@@ -33,4 +33,18 @@ async function UpdateWBList(req, res) {
 				})
 }
 
-export { GetUserInfo, UpdateWBList }
+async function UpdateVisitedList(req, res) {
+	const UID = req.body.UID
+	Account
+		.update({ _id: UID },
+				{ recentVisit: req.body.recentVisit },
+				function(err, log) {
+					if (err) {
+						console.log(err)
+					} else {
+						res.status(200).send({ message: "Success" })
+					}
+				})
+}
+
+export { GetUserInfo, UpdateWBList, UpdateVisitedList }

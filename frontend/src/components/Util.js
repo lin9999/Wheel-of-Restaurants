@@ -31,6 +31,22 @@ const displayStatus = (s) => {
     }
 }
 
+const fadeOutEffect = (targetID, setVisible) => {
+    var fadeTarget = document.getElementById(targetID);
+    var fadeEffect = setInterval(function () {
+        console.log('fade out')
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget.style.opacity > 0) {
+            fadeTarget.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect)
+            setVisible(false)
+        }
+    }, 75);
+}
+
 const geolocationSuccess = (position) => {
     console.log(position)
 }
@@ -40,4 +56,4 @@ const geolocationError = (err) => {
     alert('Something went wrong... You need to allow for it to run!');
 }
 
-export { instance, displayStatus, geolocationSuccess, geolocationError }
+export { instance, displayStatus, fadeOutEffect, geolocationSuccess, geolocationError }

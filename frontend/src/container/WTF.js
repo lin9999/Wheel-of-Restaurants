@@ -1,10 +1,12 @@
 import './WTF.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
-import { instance, displayStatus, geolocationSuccess, geolocationError } from '../components/Util'
+import { instance, displayStatus, fadeOutEffect, geolocationSuccess, geolocationError } from '../components/Util'
 import { useHistory } from 'react-router-dom'
 
+import LogoutButton from '../components/LogoutButton'
 import Wheel from "../components/Wheel"
+import ReviewBar from "../components/Review"
 import WBList from '../components/WBList'
 
 const getFoodList = async (setFoodList) => {
@@ -29,34 +31,7 @@ function WTF() {
     const [listNum, setListNum] = useState(0)
     const [selectedRestaurant, setSelectedRestaurant] = useState(0)
     const [showMap, setShowMap] = useState(false)
-
-    const logout = () => {
-        sessionStorage.removeItem('user')
-        history.push({
-            pathname: "/"
-        })
-    }
-
-    const onSelect = (selectedRestaurantItem) => {
-        setSelectedRestaurant(selectedRestaurantItem)
-    }
-
-    const toggleWheel = (_id, option) => {
-        if (!foodList) return
-        const newFoodList = foodList.slice()
-        const food = newFoodList.find((food) => food._id === _id)
-        if (food) {
-            if(option === "on") {
-                food.addedToWheel = true
-            } else if (option === "off") {
-                food.addedToWheel = false
-            } else {
-                food.addedToWheel = !food.addedToWheel
-            }
-        }
-        setFoodList(newFoodList)
-        setListNum(foodList.filter((food) => food.addedToWheel).length)
-    } 
+    const [showReview, setShowReview] = useState(true)
 
     useEffect(() => {
         const loggedInUser = sessionStorage.getItem('user');
@@ -88,8 +63,29 @@ function WTF() {
 
     useEffect(() => {
         if (!showMap)
-            setTimeout(() => { setShowMap(true) }, 4000);
+            setTimeout(() => { setShowMap(true); setShowReview(true); }, 4000);
     }, [selectedRestaurant])
+
+    const selectRestaurant = (selectedRestaurantItem) => {
+        setSelectedRestaurant(selectedRestaurantItem)
+    }
+
+    const toggleWheel = (_id, option) => {
+        if (!foodList) return
+        const newFoodList = foodList.slice()
+        const food = newFoodList.find((food) => food._id === _id)
+        if (food) {
+            if(option === "on") {
+                food.addedToWheel = true
+            } else if (option === "off") {
+                food.addedToWheel = false
+            } else {
+                food.addedToWheel = !food.addedToWheel
+            }
+        }
+        setFoodList(newFoodList)
+        setListNum(foodList.filter((food) => food.addedToWheel).length)
+    } 
 
     const handleUserWBListUpdate = async (updatedUser) => {
         setUser(updatedUser)
@@ -104,19 +100,24 @@ function WTF() {
         }
     }
 
+    const handleUserVisitedUpdate = async (updatedUser) => {
+        setUser(updatedUser)
+        const ret = await instance.post('/UpdateVisitedList', { UID: updatedUser.UID, recentVisit: updatedUser.recentVisit })
+        if (ret.data.message === "Success") {
+            sessionStorage.setItem('user', JSON.stringify(updatedUser))
+            fadeOutEffect('review', setShowReview);
+        } else {
+            displayStatus({
+                type: 'error', 
+                msg: 'failed to update VisitedList ...'
+            })
+        }
+    }
+
     return (
         <React.Fragment>
-            <h1 id="Title">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
-            <div className="Wheel">
-                { 
-                    (foodListLoaded) ? <Wheel  items={getFoodNameList(foodList.filter((food) => food.addedToWheel)).slice(0, listNum)} onSelect={onSelect} setShowMap={setShowMap}/> : <div></div>
-                }
-            </div>
-            <div className="Choices">
-                <h3>Choices: </h3>
-                <InputNumber min={0} max={(foodListLoaded) ? foodList.length : 0} value={listNum} onChange={(num) => {setListNum(num)}}/>
-            </div>
-            <Button className="LOGOUT" type="primary" onClick={logout}>LOGOUT</Button>
+            <h1 id="greetings">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
+            <LogoutButton></LogoutButton>
             <WBList classname="WBList" 
                     foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} 
                     userState={{user: user, userLoaded: userLoaded}} 
@@ -125,19 +126,29 @@ function WTF() {
                     setShowMap={setShowMap}
                     setSelectedRestaurant={setSelectedRestaurant}
             />
-            {
-                (showMap && selectedRestaurant) ? (
-                    <div id="map">
-                        <iframe src={(foodList) ? foodList.find((food) => food._id === selectedRestaurant).mapurl : ""}
-                            title="map"
-                            width="450" 
-                            height="600"
-                            frameBorder="10">
-                        </iframe>
-                    </div>
-                ) : (
-                    <React.Fragment></React.Fragment>
-                )
+            <div className="Wheel">
+                {(foodListLoaded) ? <Wheel  items={getFoodNameList(foodList.filter((food) => food.addedToWheel)).slice(0, listNum)} onSelect={selectRestaurant} setShowMap={setShowMap}/> : <div></div>}
+            </div>
+            {(showMap && selectedRestaurant) ? (
+                    <React.Fragment>
+                        <div id="map">
+                            <iframe src={(foodList) ? foodList.find((food) => food._id === selectedRestaurant).mapurl : ""}
+                                title="map"
+                                width="450" 
+                                height="600"
+                                frameBorder="10">
+                            </iframe>
+                        </div>
+                        {(showReview) ? (
+                            <ReviewBar 
+                                user={user}
+                                selectedRestaurant={selectedRestaurant}
+                                handleUserVisitedUpdate={handleUserVisitedUpdate}
+                                setShowReview={setShowReview}
+                            />) : (<React.Fragment></React.Fragment>)
+                        }
+                    </React.Fragment>
+                ) : (<React.Fragment></React.Fragment>)
             }
         </React.Fragment>
     );
