@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Wheel-of-Restaurants/static/css/main.9e8eb587.chunk.css",
-    "main.js": "/Wheel-of-Restaurants/static/js/main.2d085f3e.chunk.js",
-    "main.js.map": "/Wheel-of-Restaurants/static/js/main.2d085f3e.chunk.js.map",
-    "runtime-main.js": "/Wheel-of-Restaurants/static/js/runtime-main.5d7f19b3.js",
-    "runtime-main.js.map": "/Wheel-of-Restaurants/static/js/runtime-main.5d7f19b3.js.map",
+    "main.css": "/Wheel-of-Restaurants/static/css/main.c0d6e4ae.chunk.css",
+    "main.js": "/Wheel-of-Restaurants/static/js/main.b4a99e3f.chunk.js",
+    "main.js.map": "/Wheel-of-Restaurants/static/js/main.b4a99e3f.chunk.js.map",
+    "runtime-main.js": "/Wheel-of-Restaurants/static/js/runtime-main.e5178a51.js",
+    "runtime-main.js.map": "/Wheel-of-Restaurants/static/js/runtime-main.e5178a51.js.map",
     "static/css/2.b72b1a0e.chunk.css": "/Wheel-of-Restaurants/static/css/2.b72b1a0e.chunk.css",
-    "static/js/2.56db788a.chunk.js": "/Wheel-of-Restaurants/static/js/2.56db788a.chunk.js",
-    "static/js/2.56db788a.chunk.js.map": "/Wheel-of-Restaurants/static/js/2.56db788a.chunk.js.map",
-    "static/js/3.d1229a30.chunk.js": "/Wheel-of-Restaurants/static/js/3.d1229a30.chunk.js",
-    "static/js/3.d1229a30.chunk.js.map": "/Wheel-of-Restaurants/static/js/3.d1229a30.chunk.js.map",
+    "static/js/2.107ac39b.chunk.js": "/Wheel-of-Restaurants/static/js/2.107ac39b.chunk.js",
+    "static/js/2.107ac39b.chunk.js.map": "/Wheel-of-Restaurants/static/js/2.107ac39b.chunk.js.map",
+    "static/js/3.49dfdc88.chunk.js": "/Wheel-of-Restaurants/static/js/3.49dfdc88.chunk.js",
+    "static/js/3.49dfdc88.chunk.js.map": "/Wheel-of-Restaurants/static/js/3.49dfdc88.chunk.js.map",
     "index.html": "/Wheel-of-Restaurants/index.html",
     "static/css/2.b72b1a0e.chunk.css.map": "/Wheel-of-Restaurants/static/css/2.b72b1a0e.chunk.css.map",
-    "static/css/main.9e8eb587.chunk.css.map": "/Wheel-of-Restaurants/static/css/main.9e8eb587.chunk.css.map",
-    "static/js/2.56db788a.chunk.js.LICENSE.txt": "/Wheel-of-Restaurants/static/js/2.56db788a.chunk.js.LICENSE.txt"
+    "static/css/main.c0d6e4ae.chunk.css.map": "/Wheel-of-Restaurants/static/css/main.c0d6e4ae.chunk.css.map",
+    "static/js/2.107ac39b.chunk.js.LICENSE.txt": "/Wheel-of-Restaurants/static/js/2.107ac39b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5d7f19b3.js",
+    "static/js/runtime-main.e5178a51.js",
     "static/css/2.b72b1a0e.chunk.css",
-    "static/js/2.56db788a.chunk.js",
-    "static/css/main.9e8eb587.chunk.css",
-    "static/js/main.2d085f3e.chunk.js"
+    "static/js/2.107ac39b.chunk.js",
+    "static/css/main.c0d6e4ae.chunk.css",
+    "static/js/main.b4a99e3f.chunk.js"
   ]
 }
