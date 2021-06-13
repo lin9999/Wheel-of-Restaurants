@@ -1,16 +1,13 @@
-h1#greetings
-{
+h1#greetings {
     position: relative;
     top: 0;
     left: 510px;
     width: 440px;
 }
 
-
-#map
-{
-    position: relative;
-    top: -520px;
+#map {
+    position: absolute;
+    top: 90px;
     left: 960px;
 
     display: block;
@@ -22,6 +19,7 @@ h1#greetings
 
 div.Wheel {
     position: relative;
-    width: 300px;
+    top: -10px;
     left: 510px;
+    width: 300px;
 }

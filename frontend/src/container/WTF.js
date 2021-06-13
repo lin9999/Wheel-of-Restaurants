@@ -1,11 +1,13 @@
 import './WTF.css'
 import { Button, InputNumber } from 'antd'
 import React, { useState, useEffect } from 'react'
-import { instance, displayStatus, fadeOutEffect, geolocationSuccess, geolocationError } from '../components/Util'
+import { instance, displayStatus, fadeOutEffect, getUrl } from '../components/Util'
 import { useHistory } from 'react-router-dom'
 
 import LogoutButton from '../components/LogoutButton'
+import FuncSelectionButton from '../components/FuncSelectionButton'
 import Wheel from "../components/Wheel"
+import NearbyList from "../components/NearbyList"
 import ReviewBar from "../components/Review"
 import WBList from '../components/WBList'
 
@@ -28,10 +30,11 @@ function WTF() {
     const [userLoaded, setUserLoaded] = useState(false)
     const [foodList, setFoodList] = useState(null)
     const [foodListLoaded, setFoodListLoaded] = useState(false)
+    const [func, setFunc] = useState("Wheel")
     const [listNum, setListNum] = useState(0)
     const [selectedRestaurant, setSelectedRestaurant] = useState(0)
-    const [showMap, setShowMap] = useState(false)
     const [showReview, setShowReview] = useState(true)
+    const [refreshNearby, setRefreshNearby] = useState(0) // 0, 1
 
     useEffect(() => {
         const loggedInUser = sessionStorage.getItem('user');
@@ -45,7 +48,6 @@ function WTF() {
             })
         }
         getFoodList(setFoodList)
-        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
     }, [])
 
     useEffect(() => {
@@ -61,14 +63,19 @@ function WTF() {
         }
     }, [foodList])
 
-    useEffect(() => {
-        if (!showMap)
-            setTimeout(() => { setShowMap(true); setShowReview(true); }, 4000);
-    }, [selectedRestaurant])
 
-    const selectRestaurant = (selectedRestaurantItem) => {
-        setSelectedRestaurant(selectedRestaurantItem)
-    }
+    useEffect(() => {
+        if (func === "Nearby")
+            setRefreshNearby(1-refreshNearby)
+    }, [func])
+
+    useEffect(() => {
+        if (selectedRestaurant) {
+            setShowReview(true) 
+        } else {
+            setShowReview(false)
+        }
+    }, [selectedRestaurant])
 
     const toggleWheel = (_id, option) => {
         if (!foodList) return
@@ -114,42 +121,64 @@ function WTF() {
         }
     }
 
+    const resetSelectedRestaurant = () => {
+        setSelectedRestaurant(0)
+    }
+
+ 
+
     return (
         <React.Fragment>
-            <h1 id="greetings">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
-            <LogoutButton></LogoutButton>
             <WBList classname="WBList" 
                     foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}} 
                     userState={{user: user, userLoaded: userLoaded}} 
                     handleUserWBListUpdate={handleUserWBListUpdate} 
                     toggleWheel={toggleWheel}
-                    setShowMap={setShowMap}
                     setSelectedRestaurant={setSelectedRestaurant}
             />
-            <div className="Wheel">
-                {(foodListLoaded) ? <Wheel  items={getFoodNameList(foodList.filter((food) => food.addedToWheel)).slice(0, listNum)} onSelect={selectRestaurant} setShowMap={setShowMap}/> : <div></div>}
-            </div>
-            {(showMap && selectedRestaurant) ? (
-                    <React.Fragment>
-                        <div id="map">
-                            <iframe src={(foodList) ? foodList.find((food) => food._id === selectedRestaurant).mapurl : ""}
-                                title="map"
-                                width="450" 
-                                height="600"
-                                frameBorder="10">
-                            </iframe>
-                        </div>
-                        {(showReview) ? (
-                            <ReviewBar 
-                                user={user}
-                                selectedRestaurant={selectedRestaurant}
-                                handleUserVisitedUpdate={handleUserVisitedUpdate}
-                                setShowReview={setShowReview}
-                            />) : (<React.Fragment></React.Fragment>)
-                        }
-                    </React.Fragment>
+            <h1 id="greetings">Hi, {(!user) ? "" : user.userName}<br/>Don't know what to eat?<br/>Let us decide for you!</h1>
+            <LogoutButton></LogoutButton>
+            <FuncSelectionButton className="FuncSelection"
+                                 setFunc={setFunc}
+                                 resetSelectedRestaurant={resetSelectedRestaurant}
+            />
+            {(func === "Wheel") ? (
+                    <div className="Wheel">
+                        {(foodListLoaded) ? <Wheel  items={getFoodNameList(foodList.filter((food) => food.addedToWheel)).slice(0, listNum)} 
+                                                    setSelectedRestaurant={setSelectedRestaurant} 
+                                            /> : <div></div>}
+                    </div>
+                ) : (
+                    <div className="NearbyList">
+                        {(foodListLoaded) ? <NearbyList foodListState={{foodList: foodList, foodListLoaded: foodListLoaded}}
+                                                        refresh={refreshNearby}
+                                                        setSelectedRestaurant={setSelectedRestaurant}
+                                            /> : <div></div>}                        
+                    </div>
+                )
+            }
+            {(showReview && selectedRestaurant) ? (
+                    <ReviewBar 
+                        user={user}
+                        selectedRestaurant={selectedRestaurant}
+                        handleUserVisitedUpdate={handleUserVisitedUpdate}
+                        setShowReview={setShowReview}
+                    />
                 ) : (<React.Fragment></React.Fragment>)
             }
+
+            {(selectedRestaurant) ? (
+                    <div id="map">
+                        <iframe src={(foodList) ? getUrl(foodList, selectedRestaurant) : ""}
+                            title="map"
+                            width="450" 
+                            height="600"
+                            frameBorder="10">
+                        </iframe>
+                    </div>
+                ) : (<React.Fragment></React.Fragment>)
+            }
+
         </React.Fragment>
     );
 };

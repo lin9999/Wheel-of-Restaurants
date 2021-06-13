@@ -83,8 +83,8 @@ function WBList(props) {
 			<Tabs type="card" className="Tabs" defaultActiveKey="1" onTabClick={() => {setSearchWord("")}}>
 				<TabPane className="TabPane" tab="All" key="1" >
 					<SearchBar className="SearchBar" searchWord={searchWord} setSearchWord={setSearchWord}/>
-					<nav>
-						<List
+					<nav className="WBListNav">
+						<List 
 							dataSource={(props.foodListState.foodListLoaded) ? 
 								foodList.filter((restaurant) => (restaurant.restaurantName.includes(searchWord))) : 
 								[]}
@@ -92,7 +92,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
 									<Button size="small" shape="round" type="primary" onClick={() => {props.toggleWheel(item._id)}} 
@@ -119,7 +119,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}: {"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
@@ -141,7 +141,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>
@@ -163,7 +163,7 @@ function WBList(props) {
 							renderItem={item => (
 								<List.Item key={item._id}>
 									<List.Item.Meta
-										title={ <button type="button" className="link-button" onClick={() => {props.setShowMap(true); props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
+										title={ <button type="button" className="link-button" onClick={() => {props.setSelectedRestaurant(item._id)}}>{item.restaurantName}</button> }
 										description={item.priceTag + ", " + item.categoryTag + ", " + item.regionTag}
 									/>
                                     <Button size="small" shape="round" type="primary" style={(item.addedToWheel)? {"background":"#994aff82"}:{"background":"#da3768"}} onClick={() => props.toggleWheel(item._id)}>Wheel</Button>

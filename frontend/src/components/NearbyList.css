@@ -1,32 +1,17 @@
-.SearchBar
-{
+.NearbyList {
     position: relative;
-    top: -100px;
-    left: 30%;
-}
-
-.Tabs
-{
-    position: absolute;
-    top: 360px;
-
+    top: 0px;
+    left: 510px;
     display: block;
 
-    width: 434px;
+    width: 440px;
     height: 400px;
+    background-color: #ff9900bf;
 }
 
-.ant-tabs-content-holder
-{
-    position: absolute;
-    top: 40px;
-
-    width: 434px;
-}
-
-nav.WBListNav ul {
-    height: 280px; 
-    width: 435px;
+nav.NearbyNav ul {
+    height: 400px; 
+    width: 440px;
     overflow: hidden;
     overflow-y: scroll;
 }

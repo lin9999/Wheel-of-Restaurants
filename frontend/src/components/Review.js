@@ -26,8 +26,8 @@ function Review(props) {
 	return (
 		<h1 id="review">
             Do you like this?<br/>
-            <Button className="ReviewYes" type="primary" style={{ background: "green" }} onClick={handleYes}>YES</Button>
-            <Button className="ReviewNo" type="primary" style={{ background: "red" }} onClick={handleNo}>NO</Button>
+            <Button className="ReviewYes" type="primary" style={{background: "green"}} onClick={handleYes}>YES</Button>
+            <Button className="ReviewNo" type="primary" style={{background: "red"}} onClick={handleNo}>NO</Button>
         </h1>
 	);
 };

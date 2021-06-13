@@ -12,16 +12,17 @@ export default class Wheel extends React.Component {
     }
 
     selectItem() {
-        const { items, onSelect } = this.props
-        this.props.setShowMap(false)
+        const { items, setSelectedRestaurant } = this.props
         if (this.state.selectedItem === null && this.props.items.length > 0) {
             const selectedItem = Math.floor(Math.random() * items.length);
             const selectedID = this.props.items[selectedItem]._id 
             this.setState({ selectedItem });
-            onSelect(selectedID)
+            setTimeout(() => { 
+                setSelectedRestaurant(selectedID)
+            }, 3000)
         } else {
             this.setState({ selectedItem: null });
-            onSelect(0)
+            setSelectedRestaurant(0)
             setTimeout(this.selectItem, 500);
         }
     }

@@ -34,7 +34,6 @@ const displayStatus = (s) => {
 const fadeOutEffect = (targetID, setVisible) => {
     var fadeTarget = document.getElementById(targetID);
     var fadeEffect = setInterval(function () {
-        console.log('fade out')
         if (!fadeTarget.style.opacity) {
             fadeTarget.style.opacity = 1;
         }
@@ -47,13 +46,9 @@ const fadeOutEffect = (targetID, setVisible) => {
     }, 75);
 }
 
-const geolocationSuccess = (position) => {
-    console.log(position)
+const getUrl = (foodList, restaurant) => {
+    return foodList.find((food) => food._id === restaurant).mapurl
 }
 
-const geolocationError = (err) => {
-    console.log(err);
-    alert('Something went wrong... You need to allow for it to run!');
-}
 
-export { instance, displayStatus, fadeOutEffect, geolocationSuccess, geolocationError }
+export { instance, displayStatus, fadeOutEffect, getUrl }
