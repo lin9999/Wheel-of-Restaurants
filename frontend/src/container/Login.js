@@ -112,7 +112,7 @@ function Login() {
 					<Button type="primary" htmlType="submit" className="login-form-button" onClick={signUp}>
 						Register now!
 					</Button>
-					<a href="TODO">Forgot password</a>		
+					<a href="../components/maintenance.html">Forgot password</a>		
 				</Form.Item>
 			</Form>
 		</div>
