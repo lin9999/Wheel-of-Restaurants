@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Wheel-of-Restaurants/static/css/main.6c989c70.chunk.css",
-    "main.js": "/Wheel-of-Restaurants/static/js/main.9380f0cd.chunk.js",
-    "main.js.map": "/Wheel-of-Restaurants/static/js/main.9380f0cd.chunk.js.map",
+    "main.js": "/Wheel-of-Restaurants/static/js/main.4f6fc7b6.chunk.js",
+    "main.js.map": "/Wheel-of-Restaurants/static/js/main.4f6fc7b6.chunk.js.map",
     "runtime-main.js": "/Wheel-of-Restaurants/static/js/runtime-main.8a6c1889.js",
     "runtime-main.js.map": "/Wheel-of-Restaurants/static/js/runtime-main.8a6c1889.js.map",
     "static/css/2.b72b1a0e.chunk.css": "/Wheel-of-Restaurants/static/css/2.b72b1a0e.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.b72b1a0e.chunk.css",
     "static/js/2.d85d232b.chunk.js",
     "static/css/main.6c989c70.chunk.css",
-    "static/js/main.9380f0cd.chunk.js"
+    "static/js/main.4f6fc7b6.chunk.js"
   ]
 }
